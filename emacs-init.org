@@ -1,0 +1,170 @@
+#+TITLE: Emacs Init
+#+AUTHOR: Sam Doshi
+#+EMAIL: sam@metal-fish.co.uk
+
+* Emacs Init as an Org file
+** Useful links
+- [[https://github.com/jhenahan/emacs.d/blob/master/emacs-init.org][jhenahan/emacs.d]]
+- [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa/emacs.d]]
+- [[https://github.com/steckerhalter/steckemacs/blob/master/steckemacs.org][steckerhalter/steckemacs]]
+
+** Initialize req-package
+#+BEGIN_SRC emacs-lisp
+(require 'req-package)
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+ #+END_SRC
+
+* Evil
+** Evil
+#+BEGIN_SRC emacs-lisp
+(req-package evil
+  :ensure evil
+  :requires (evil-leader key-chord)
+  :init
+  (progn
+    (setq evil-default-cursor t)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-w-in-emacs-state t)
+    (evil-mode 1)
+    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)))
+#+END_SRC
+
+** Evil leader
+#+BEGIN_SRC emacs-lisp
+(req-package evil-leader
+  :ensure evil-leader
+  :requires helm
+  :init
+  (progn
+    (evil-leader/set-leader ",")
+    (global-evil-leader-mode)
+    (evil-leader/set-key
+      "e"  'find-file
+      "b"  'switch-to-buffer
+      "h"  'helm-mini
+      "k"  'kill-buffer
+      "se" (lambda () (interactive)
+             (find-file "~/.emacs.d/emacs-init.org"))
+      "x"  'execute-extended-command)))
+#+END_SRC
+
+* Major Modes
+** Org
+#+BEGIN_SRC emacs-lisp
+(req-package org-install
+  :ensure org
+  :init
+  (progn
+    (setq org-startup-indented t)
+    (setq org-src-fontify-natively t)))
+#+END_SRC
+
+* Minor Modes
+** Helm
+#+BEGIN_SRC emacs-lisp
+(req-package helm
+  :ensure helm
+  :diminish helm-mode
+  :config
+  (progn
+    (require 'helm-config)
+    (require 'helm-files)
+    (bind-key "C-j" 'helm-next-line helm-map)
+    (bind-key "C-k" 'helm-previous-line helm-map)
+    (bind-key "C-S-j" 'helm-next-source helm-map)
+    (bind-key "C-S-k" 'helm-previous-source helm-map)
+    ;; for helm-find-files
+    (bind-key "<tab>" 'helm-execute-persistent-action helm-find-files-map)
+    ;; for find-file
+    (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
+    (helm-mode 1)))
+#+END_SRC
+
+** Key chord
+#+BEGIN_SRC emacs-lisp
+(req-package key-chord
+  :ensure key-chord
+  :init
+  (progn
+    (setq key-chord-two-keys-delay 0.5)
+    (key-chord-mode 1)))
+#+END_SRC
+
+** Linum
+Line numbers in programming modes
+#+BEGIN_SRC emacs-lisp
+(req-package linum
+  :config
+  (add-hook 'prog-mode-hook
+            '(lambda () (linum-mode 1))))
+#+END_SRC
+
+** Pallet
+#+BEGIN_SRC emacs-lisp
+(req-package pallet
+  :init
+  (progn
+    (pallet-init)))
+#+END_SRC
+
+** Whitespace
+#+BEGIN_SRC emacs-lisp
+    (req-package whitespace
+      :diminish global-whitespace-mode
+      :init
+      (setq whitespace-style (quote (face tabs newline trailing tab-mark)))
+      (global-whitespace-mode 1))
+#+END_SRC
+
+* GUI
+** Theme
+Use solarized
+#+BEGIN_SRC emacs-lisp
+(req-package solarized-theme
+  :ensure solarized-theme
+  :init
+  (progn
+    (setq solarized-distinct-fringe-background t)
+    (setq solarized-use-more-italic t)
+    (setq solarized-use-variable-pitch nil)
+    (load-theme 'solarized-dark t)))
+#+END_SRC
+
+Fonts
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :height 140)
+#+END_SRC
+
+** Other settings
+Disable toolbar and scrollbar
+#+BEGIN_SRC emacs-lisp
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+END_SRC
+
+Only display the menu bar when on a GUI
+#+BEGIN_SRC emacs-lisp
+(unless (display-graphic-p) (menu-bar-mode -1))
+#+END_SRC
+
+Be quiet
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-echo-area-message t)
+(setq inhibit-startup-message t)
+#+END_SRC
+
+Insert a # with Option-3 on a Mac
+#+BEGIN_SRC emacs-lisp
+(defun insert-pound ()
+  "Inserts a pound into the buffer"
+  (insert "#"))
+
+(bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
+#+END_SRC
+
+* Fulfill requirements
+#+BEGIN_SRC emacs-lisp
+(req-package-finish)
+#+END_SRC

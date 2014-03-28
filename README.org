@@ -1,0 +1,12 @@
+#+TITLE: Emacs Init README
+#+AUTHOR: Sam Doshi
+#+EMAIL: sam@metal-fish.co.uk
+
+* README.org
+1. Install [[https://github.com/cask/cask][Cask]].
+  #+BEGIN_SRC sh
+  $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+  #+END_SRC
+2. Add =~/.cask/bin= to your =PATH=.
+3. Run =cask install= from your =~/.emacs.d= directory
+4. Run emacs!
