@@ -136,7 +136,7 @@ Fonts
 (set-face-attribute 'default nil :height 140)
 #+END_SRC
 
-** Other settings
+** Other GUI settings
 Disable toolbar and scrollbar
 #+BEGIN_SRC emacs-lisp
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -155,6 +155,14 @@ Be quiet
 (setq inhibit-startup-message t)
 #+END_SRC
 
+* Other settings
+** Tab behaviour
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(electric-indent-mode 1)
+#+END_SRC
+
+** # on a Mac
 Insert a # with Option-3 on a Mac
 #+BEGIN_SRC emacs-lisp
 (defun insert-pound ()
@@ -162,6 +170,26 @@ Insert a # with Option-3 on a Mac
   (insert "#"))
 
 (bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
+#+END_SRC
+
+** Path from shell on a Mac
+#+BEGIN_SRC emacs-lisp
+(req-package exec-path-from-shell
+  :init
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)))
+#+END_SRC
+
+** Backups and autosave files
+Place them in the tmp directory
+#+BEGIN_SRC emacs-lisp
+(req-package files
+  :init
+  (progn
+    (setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+    (setq auto-save-file-name-transforms
+          `((".*" ,temporary-file-directory t)))))
 #+END_SRC
 
 * Fulfill requirements
