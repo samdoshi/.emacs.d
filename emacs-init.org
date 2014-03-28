@@ -50,6 +50,24 @@
 #+END_SRC
 
 * Major Modes
+** Haskell
+#+BEGIN_SRC emacs-lisp
+(req-package haskell-mode
+  :ensure haskell-mode
+  :commands haskell-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.l?hs$" . haskell-mode))
+  :config
+  (progn
+    (defun init/haskell-hook ()
+      (turn-on-haskell-indentation)
+      (turn-on-haskell-doc)
+      (diminish 'haskell-doc-mode "")
+      (turn-on-eldoc-mode)
+      (diminish 'eldoc-mode "")
+      (turn-on-haskell-decl-scan))
+    (add-hook 'haskell-mode-hook 'init/haskell-hook)))
+#+END_SRC
 ** Org
 #+BEGIN_SRC emacs-lisp
 (req-package org-install

@@ -10,6 +10,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "f")
 (depends-on "goto-chg")
+(depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "key-chord")
 (depends-on "package-build")
