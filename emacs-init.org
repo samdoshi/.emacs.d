@@ -96,8 +96,10 @@ Line numbers in programming modes
 #+BEGIN_SRC emacs-lisp
 (req-package linum
   :config
-  (add-hook 'prog-mode-hook
-            '(lambda () (linum-mode 1))))
+  (progn
+    (add-hook 'prog-mode-hook
+              '(lambda () (linum-mode 1)))
+    (setq-default linum-format "%4d")))
 #+END_SRC
 
 ** Pallet
