@@ -17,6 +17,7 @@
 (depends-on "key-chord")
 (depends-on "package-build")
 (depends-on "pallet")
+(depends-on "popwin")
 (depends-on "req-package")
 (depends-on "s")
 (depends-on "shut-up")

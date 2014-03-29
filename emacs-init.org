@@ -91,11 +91,15 @@
 #+BEGIN_SRC emacs-lisp
 (req-package helm
   :ensure helm
+  :requires popwin
   :diminish helm-mode
   :config
   (progn
     (require 'helm-config)
     (require 'helm-files)
+    (setq popwin:special-display-config
+          (append helm-popwin
+                  popwin:special-display-config))
     (bind-key "C-j" 'helm-next-line helm-map)
     (bind-key "C-k" 'helm-previous-line helm-map)
     (bind-key "C-S-j" 'helm-next-source helm-map)
@@ -136,6 +140,17 @@ Line numbers in programming modes
     (if nil pallet-init)))
 #+END_SRC
 
+** Popwin
+#+BEGIN_SRC emacs-lisp
+(req-package popwin
+  :ensure popwin
+  :config
+  (progn
+    (popwin-mode 1)
+    (setq helm-popwin
+          '(("*Helm Find Files*" :height 20)
+            ("^\*helm.+\*$" :regexp t :height 20)))))
+#+END_SRC
 ** Whitespace
 #+BEGIN_SRC emacs-lisp
     (req-package whitespace
