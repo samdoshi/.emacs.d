@@ -220,6 +220,11 @@ Change frame font sizes with Super-Shift-{-=}
 (bind-key "s-_" '(lambda () (interactive) (init/change-frame-font-height -10)))
 #+END_SRC
 
+Go into full screen with Super-F
+#+BEGIN_SRC emacs-lisp
+(bind-key "s-F" 'toggle-frame-fullscreen)
+#+END_SRC
+
 * Other settings
 ** Tab behaviour
 #+BEGIN_SRC emacs-lisp
