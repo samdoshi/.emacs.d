@@ -79,6 +79,14 @@
 #+END_SRC
 
 * Minor Modes
+** Adaptive wrap
+#+BEGIN_SRC emacs-lisp
+(req-package adaptive-wrap
+  :ensure adaptive-wrap
+  :init
+  (progn
+    (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)))
+#+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
 (req-package helm
@@ -182,6 +190,13 @@ Be quiet
 (electric-indent-mode 1)
 #+END_SRC
 
+** Visual lines
+#+BEGIN_SRC emacs-lisp
+(setq-default visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'prog-mode-hook 'turn-on-visual-line-mode)
+(diminish 'visual-line-mode "")
+#+END_SRC
 ** # on a Mac
 Insert a # with Option-3 on a Mac
 #+BEGIN_SRC emacs-lisp
