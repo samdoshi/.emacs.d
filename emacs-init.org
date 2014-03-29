@@ -24,7 +24,7 @@ Make sure we set =evil-want-C-u-scroll= before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package evil
   :ensure evil
-  :requires (evil-leader key-chord)
+  :requires (evil-leader key-chord undo-tree)
   :init
   (progn
     (setq evil-default-cursor t)
@@ -153,6 +153,15 @@ Line numbers in programming modes
     (setq helm-popwin
           '(("*Helm Find Files*" :height 20)
             ("^\*helm.+\*$" :regexp t :height 20)))))
+#+END_SRC
+** Undo tree
+#+BEGIN_SRC emacs-lisp
+(req-package undo-tree
+  :ensure undo-tree
+  :diminish ""
+  :init
+  (progn
+    (global-undo-tree-mode)))
 #+END_SRC
 ** Whitespace
 #+BEGIN_SRC emacs-lisp
