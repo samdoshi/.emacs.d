@@ -125,7 +125,7 @@ Line numbers in programming modes
 (req-package pallet
   :init
   (progn
-    (pallet-init)))
+    (if nil pallet-init)))
 #+END_SRC
 
 ** Whitespace
