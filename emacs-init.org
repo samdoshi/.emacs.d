@@ -24,13 +24,15 @@ Make sure we set =evil-want-C-u-scroll= before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package evil
   :ensure evil
-  :requires (evil-leader key-chord undo-tree)
+  :requires (ace-jump-mode evil-leader key-chord undo-tree)
   :init
   (progn
     (setq evil-default-cursor t)
     (setq evil-want-C-w-in-emacs-state t)
     (evil-mode 1)
-    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)))
+    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+    (bind-key "SPC" 'ace-jump-char-mode evil-motion-state-map)
+    (bind-key "S-SPC" 'ace-jump-word-mode evil-motion-state-map)))
 #+END_SRC
 
 ** Evil leader
@@ -82,6 +84,11 @@ Make sure we set =evil-want-C-u-scroll= before =evil= is loaded.
 #+END_SRC
 
 * Minor Modes
+** Ace jump mode
+#+BEGIN_SRC emacs-lisp
+(req-package ace-jump-mode
+  :ensure ace-jump-mode)
+#+END_SRC
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
 (req-package adaptive-wrap

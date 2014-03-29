@@ -1,6 +1,7 @@
 (source melpa)
 (source gnu)
 
+(depends-on "ace-jump-mode")
 (depends-on "adaptive-wrap")
 (depends-on "bind-key")
 (depends-on "cask")
