@@ -17,6 +17,10 @@
 
 * Evil
 ** Evil
+Make sure we set =evil-want-C-u-scroll= before =evil= is loaded.
+#+BEGIN_SRC emacs-lisp
+(setq evil-want-C-u-scroll t)
+#+END_SRC
 #+BEGIN_SRC emacs-lisp
 (req-package evil
   :ensure evil
@@ -24,7 +28,6 @@
   :init
   (progn
     (setq evil-default-cursor t)
-    (setq evil-want-C-u-scroll t)
     (setq evil-want-C-w-in-emacs-state t)
     (evil-mode 1)
     (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)))
