@@ -73,6 +73,22 @@ Make sure we set =evil-want-C-u-scroll= before =evil= is loaded.
       (turn-on-haskell-decl-scan))
     (add-hook 'haskell-mode-hook 'init/haskell-hook)))
 #+END_SRC
+** Python
+Use =elpy= but disable auto config of variables and remove =flymake=
+#+BEGIN_SRC emacs-lisp
+(req-package elpy
+  :ensure elpy
+  :config
+  (progn
+    (elpy-enable 'skip)
+    (delq 'flymake-mode elpy-default-minor-modes)))
+#+END_SRC
+For some reason =evil= prevents proper python identation, override it for =python-mode=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (define-key evil-insert-state-local-map (kbd "RET") 'newline-and-indent)))
+#+END_SRC
 ** Org
 #+BEGIN_SRC emacs-lisp
 (req-package org-install
