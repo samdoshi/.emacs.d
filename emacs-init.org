@@ -47,6 +47,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     (evil-leader/set-key
       "e"  'find-file
       "b"  'switch-to-buffer
+      "d"  'deft
       "h"  'helm-mini
       "k"  'kill-buffer
       "se" (lambda () (interactive)
@@ -55,6 +56,19 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+END_SRC
 
 * Major Modes
+** Deft
+#+BEGIN_SRC emacs-lisp
+(req-package deft
+  :ensure deft
+  :commands deft
+  :init
+  (progn
+    (setq deft-extension "org")
+    (setq deft-text-mode 'org-mode)
+    (setq deft-use-filename-as-title t)
+    (setq deft-directory "~/Dropbox/Application Support/Deft")))
+#+END_SRC
+
 ** Haskell
 #+BEGIN_SRC emacs-lisp
 (req-package haskell-mode

@@ -7,6 +7,7 @@
 (depends-on "bind-key")
 (depends-on "cask")
 (depends-on "dash")
+(depends-on "deft")
 (depends-on "diminish")
 (depends-on "elpy")
 (depends-on "epl")
