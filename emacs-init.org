@@ -104,6 +104,10 @@ For some reason =evil= prevents proper python identation, override it for =pytho
           '(lambda ()
              (define-key evil-insert-state-local-map (kbd "RET") 'newline-and-indent)))
 #+END_SRC
+** Magic
+#+BEGIN_SRC emacs-lisp
+(req-package magit)
+#+END_SRC
 ** Org
 #+BEGIN_SRC emacs-lisp
 (req-package org-install
@@ -137,6 +141,12 @@ For some reason =evil= prevents proper python identation, override it for =pytho
     (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
 #+END_SRC
 
+#+END_SRC
+** Git gutter fringe
+#+BEGIN_SRC emacs-lisp
+(req-package git-gutter-fringe
+  :diminish git-gutter-mode
+  :idle (global-git-gutter-mode))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
