@@ -32,7 +32,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     (evil-mode 1)
     (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
     (bind-key "SPC" 'ace-jump-char-mode evil-motion-state-map)
-    (bind-key "S-SPC" 'ace-jump-word-mode evil-motion-state-map)))
+    (bind-key "S-SPC" 'ace-jump-word-mode evil-motion-state-map)
+    (add-to-list 'evil-insert-state-modes 'deft-mode)))
 #+END_SRC
 
 ** Evil leader
