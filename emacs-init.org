@@ -7,6 +7,7 @@
 - [[https://github.com/jhenahan/emacs.d/blob/master/emacs-init.org][jhenahan/emacs.d]]
 - [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa/emacs.d]]
 - [[https://github.com/steckerhalter/steckemacs/blob/master/steckemacs.org][steckerhalter/steckemacs]]
+- [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
 
 ** Initialize req-package
 #+BEGIN_SRC emacs-lisp
