@@ -143,7 +143,6 @@ For some reason =evil= prevents proper python identation, override it for =pytho
     (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
 #+END_SRC
 
-#+END_SRC
 ** Git gutter fringe
 #+BEGIN_SRC emacs-lisp
 (req-package git-gutter-fringe
