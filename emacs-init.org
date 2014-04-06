@@ -10,6 +10,7 @@
 - [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
 
 ** Initialize req-package
+[[https://github.com/edvorg/req-package][=req-package=]] extends [[https://github.com/jwiegley/use-package][=use-package=]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
 #+BEGIN_SRC emacs-lisp
 (require 'req-package)
 (setq custom-file "~/.emacs.d/custom.el")
