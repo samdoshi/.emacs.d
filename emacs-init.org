@@ -228,6 +228,22 @@ Line numbers in programming modes
           '(("*Helm Find Files*" :height 20)
             ("^\*helm.+\*$" :regexp t :height 20)))))
 #+END_SRC
+
+** Rainbow delimiters
+#+BEGIN_SRC emacs-lisp
+(req-package rainbow-delimiters
+  :ensure rainbow-delimiters
+  :commands rainbow-delimiters-mode)
+#+END_SRC
+
+** Rainbow blocks
+Probably want to customise the colours used by solarized for this mode.
+#+BEGIN_SRC emacs-lisp
+(req-package rainbow-blocks
+  :ensure rainbow-blocks
+  :commands rainbow-blocks-mode)
+#+END_SRC
+
 ** Undo tree
 #+BEGIN_SRC emacs-lisp
 (req-package undo-tree

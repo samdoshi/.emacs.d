@@ -39,6 +39,8 @@
 (depends-on "popup")
 (depends-on "popwin")
 (depends-on "pyvenv")
+(depends-on "rainbow-blocks")
+(depends-on "rainbow-delimiters")
 (depends-on "req-package")
 (depends-on "s")
 (depends-on "shut-up")
