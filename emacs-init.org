@@ -51,6 +51,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       "e"  'find-file
       "b"  'switch-to-buffer
       "d"  'deft
+      "f"  'helm-flycheck
       "h"  'helm-mini
       "k"  'kill-buffer
       "se" (lambda () (interactive)
@@ -134,6 +135,20 @@ For some reason =evil= prevents proper python identation, override it for =pytho
   (progn
     (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)))
 #+END_SRC
+
+** Flycheck
+#+BEGIN_SRC emacs-lisp
+(req-package flycheck
+  :ensure flycheck
+  :init (add-hook 'after-init-hook 'global-flycheck-mode))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(req-package helm-flycheck
+  :commands helm-flycheck
+  :requires flycheck)
+#+END_SRC
+
 ** Flyspell
 #+BEGIN_SRC emacs-lisp
 (req-package flyspell
