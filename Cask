@@ -35,6 +35,7 @@
 (depends-on "nose")
 (depends-on "package-build")
 (depends-on "pallet")
+(depends-on "pkg-info")
 (depends-on "popup")
 (depends-on "popwin")
 (depends-on "pyvenv")
