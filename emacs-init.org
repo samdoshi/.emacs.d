@@ -77,6 +77,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package haskell-mode
   :ensure haskell-mode
+  :requires popwin
   :commands haskell-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.l?hs$" . haskell-mode))
@@ -89,7 +90,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       (turn-on-eldoc-mode)
       (diminish 'eldoc-mode "")
       (turn-on-haskell-decl-scan))
-    (add-hook 'haskell-mode-hook 'init/haskell-hook)))
+    (add-hook 'haskell-mode-hook 'init/haskell-hook)
+    (bind-key "C-c C-c" 'haskell-compile haskell-mode-map)
+    (push '("*haskell-compilation*" :height 20) popwin:special-display-config)))
 #+END_SRC
 ** Python
 Use =elpy= but disable auto config of variables and remove =flymake=
