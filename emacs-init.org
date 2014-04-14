@@ -371,6 +371,11 @@ Place them in the tmp directory
           `((".*" ,temporary-file-directory t)))))
 #+END_SRC
 
+** Scratch buffer
+#+BEGIN_SRC emacs-lisp
+(setq initial-scratch-message nil)
+#+END_SRC
+
 * Fulfill requirements
 #+BEGIN_SRC emacs-lisp
 (req-package-finish)
