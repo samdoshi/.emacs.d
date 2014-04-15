@@ -154,11 +154,11 @@ For some reason =evil= prevents proper python identation, override it for =pytho
 
 ** Flyspell
 #+BEGIN_SRC emacs-lisp
-(req-package flyspell
-  :init
-  (progn
-    (add-hook 'text-mode-hook 'flyspell-mode)
-    (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
+;;(req-package flyspell
+;;  :init
+;;  (progn
+;;    (add-hook 'text-mode-hook 'flyspell-mode)
+;;    (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
 #+END_SRC
 
 ** Git gutter fringe
