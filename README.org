@@ -5,8 +5,7 @@
 * README.org
 1. Install [[https://github.com/cask/cask][Cask]].
   #+BEGIN_SRC sh
-  $ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+  $ brew install cask
   #+END_SRC
-2. Add =~/.cask/bin= to your =PATH=.
-3. Run =cask install= from your =~/.emacs.d= directory
-4. Run emacs!
+2. Run =cask install= from your =~/.emacs.d= directory
+3. Run emacs!
