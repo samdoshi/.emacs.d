@@ -28,7 +28,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package evil
   :ensure evil
-  :requires (ace-jump-mode evil-leader key-chord undo-tree)
+  :require (ace-jump-mode evil-leader key-chord undo-tree)
   :init
   (progn
     (evil-mode 1)
@@ -42,7 +42,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package evil-leader
   :ensure evil-leader
-  :requires helm
+  :require helm
   :init
   (progn
     (evil-leader/set-leader ",")
@@ -77,7 +77,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package haskell-mode
   :ensure haskell-mode
-  :requires popwin
+  :require popwin
   :commands haskell-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.l?hs$" . haskell-mode))
@@ -133,7 +133,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package helm-flycheck
   :commands helm-flycheck
-  :requires flycheck)
+  :require flycheck)
 #+END_SRC
 
 ** Flyspell
@@ -155,7 +155,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package helm
   :ensure helm
-  :requires popwin
+  :require popwin
   :diminish helm-mode
   :config
   (progn
