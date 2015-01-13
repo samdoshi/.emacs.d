@@ -156,9 +156,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 (req-package guide-key
   :init
   (progn
-    (setq guide-key/guide-key-sequence `(",")
+    (setq guide-key/guide-key-sequence `("," "g" "C-h" "C-c")
           guide-key/recursive-key-sequence-flag t
-          guide-key/idle-delay 0.4)
+          guide-key/idle-delay 0.2)
     (guide-key-mode t)))
 #+END_SRC
 ** Helm
