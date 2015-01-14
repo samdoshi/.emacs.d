@@ -60,40 +60,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+END_SRC
 
 * Major Modes
-** Deft
-#+BEGIN_SRC emacs-lisp
-(req-package deft
-  :ensure deft
-  :commands deft
-  :init
-  (progn
-    (setq deft-extension "org")
-    (setq deft-text-mode 'org-mode)
-    (setq deft-use-filename-as-title t)
-    (setq deft-directory "~/Dropbox/Application Support/Deft")))
-#+END_SRC
-
-** Haskell
-#+BEGIN_SRC emacs-lisp
-(req-package haskell-mode
-  :ensure haskell-mode
-  :require popwin
-  :commands haskell-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.l?hs$" . haskell-mode))
-  :config
-  (progn
-    (defun init/haskell-hook ()
-      (turn-on-haskell-indentation)
-      (turn-on-haskell-doc)
-      (diminish 'haskell-doc-mode "")
-      (turn-on-eldoc-mode)
-      (diminish 'eldoc-mode "")
-      (turn-on-haskell-decl-scan))
-    (add-hook 'haskell-mode-hook 'init/haskell-hook)
-    (bind-key "C-c C-c" 'haskell-compile haskell-mode-map)
-    (push '("*haskell-compilation*" :height 20) popwin:special-display-config)))
-#+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp
 (req-package magit)
