@@ -94,18 +94,20 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     (bind-key "C-c C-c" 'haskell-compile haskell-mode-map)
     (push '("*haskell-compilation*" :height 20) popwin:special-display-config)))
 #+END_SRC
-** Magic
+** Magit
 #+BEGIN_SRC emacs-lisp
 (req-package magit)
 #+END_SRC
 ** Org
 #+BEGIN_SRC emacs-lisp
-(req-package org-install
-  :ensure org
-  :init
-  (progn
-    (setq org-startup-indented t)
-    (setq org-src-fontify-natively t)))
+  (req-package org-install
+    :ensure org
+    :init
+    (progn
+      (setq org-startup-indented t
+            org-src-tabs-acts-natively t
+            org-src-fontify-natively t)))
+
 #+END_SRC
 
 * Minor Modes
@@ -151,7 +153,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   :diminish git-gutter-mode
   :idle (global-git-gutter-mode))
 #+END_SRC
-** Guide Key
+** Guide key
 #+BEGIN_SRC emacs-lisp
 (req-package guide-key
   :init
