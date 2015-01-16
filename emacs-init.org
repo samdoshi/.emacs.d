@@ -70,6 +70,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
           (init/evil-leader-group (car group) (cdr group)))
         (evil-leader/set-key
           "bb"  'switch-to-buffer
+          "bd"  'evil-delete-buffer
           "bk"  'kill-buffer
           "ee"  (lambda ()
                   "Edit ~/.emacs.d/emacs-init.org"
