@@ -75,11 +75,12 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
           "ee"  (lambda ()
                   "Edit ~/.emacs.d/emacs-init.org"
                   (interactive)
+                  (find-file "~/.emacs.d/emacs-init.org"))
           "ff"  'find-file
           "trb" 'rainbow-blocks-mode
-          "trd" 'rainbow-delimiters-mode (find-file "~/.emacs.d/emacs-init.org"))
-          "x"   'execute-extended-command
-          ":"   'execute-extended-command)))
+          "trd" 'rainbow-delimiters-mode
+          "x"   'helm-M-x
+          ":"   'helm-M-x)))
 #+END_SRC
 
 * Major Modes
