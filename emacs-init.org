@@ -50,19 +50,22 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       (progn
         (evil-leader/set-leader "<SPC>")
         (global-evil-leader-mode)
-        (dolist (group '(("b" . "buffer")
-                         ("e" . "emacs")
-                         ("f" . "files")
-                         ("w" . "window")))
+        (dolist (group '(("b"  . "buffer")
+                         ("e"  . "emacs")
+                         ("f"  . "files")
+                         ("t"  . "text")
+                         ("tr" . "rainbow")
+                         ("w"  . "window")))
           (init/evil-leader-group (car group) (cdr group)))
         (evil-leader/set-key
-          "ff"  'find-file
           "bb"  'switch-to-buffer
           "bk"  'kill-buffer
           "ee"  (lambda ()
                   "Edit ~/.emacs.d/emacs-init.org"
                   (interactive)
-                  (find-file "~/.emacs.d/emacs-init.org"))
+          "ff"  'find-file
+          "trb" 'rainbow-blocks-mode
+          "trd" 'rainbow-delimiters-mode (find-file "~/.emacs.d/emacs-init.org"))
           "x"   'execute-extended-command
           ":"   'execute-extended-command)))
 #+END_SRC
