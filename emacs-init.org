@@ -3,12 +3,23 @@
 #+EMAIL: sam@metal-fish.co.uk
 
 * Emacs Init as an Org file
+** Todo
+- rainbow-identifiers
+- spell check
+- powerline
+- evil-escape
+- evil-lisp-state
+- add help menu, with k,v,w
+- stop helm taking over everything
+
 ** Useful links
 - [[https://github.com/jhenahan/emacs.d/blob/master/emacs-init.org][jhenahan/emacs.d]]
 - [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa/emacs.d]]
 - [[https://github.com/steckerhalter/steckemacs/blob/master/steckemacs.org][steckerhalter/steckemacs]]
 - [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
 - [[https://github.com/syl20bnr/spacemacs][syl20bnr/spacemacs]]
+- [[https://github.com/emacs-tw/awesome-emacs][emacs-tw/awesome-emacs]]
+- [[http://emacsthemes.caisah.info/][emacsthemes.caisah.info]]
 
 ** Initialize req-package
 [[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
