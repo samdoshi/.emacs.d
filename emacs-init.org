@@ -134,14 +134,15 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 [[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
 #+BEGIN_SRC emacs-lisp
   (req-package guide-key
+    :diminish guide-key-mode
     :init
     (progn
       (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-h" "C-c")
             guide-key/recursive-key-sequence-flag t
             guide-key/highlight-command-regexp "group:"
             guide-key/text-scale-amount 1
-            guide-key/idle-delay 0.2))
-    :idle (guide-key-mode t))
+            guide-key/idle-delay 0.2)
+      (guide-key-mode t)))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
