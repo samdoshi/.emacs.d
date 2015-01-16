@@ -8,6 +8,7 @@
 - [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa/emacs.d]]
 - [[https://github.com/steckerhalter/steckemacs/blob/master/steckemacs.org][steckerhalter/steckemacs]]
 - [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
+- [[https://github.com/syl20bnr/spacemacs][syl20bnr/spacemacs]]
 
 ** Initialize req-package
 [[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
@@ -36,22 +37,34 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 
 ** Evil leader
 #+BEGIN_SRC emacs-lisp
-(req-package evil-leader
-  :ensure evil-leader
-  :require helm
-  :init
-  (progn
-    (evil-leader/set-leader "<SPC>")
-    (global-evil-leader-mode)
-    (define-prefix-command 'group:buffer)
-    (evil-leader/set-key
-      "e"  'find-file
-      "b"  'group:buffer
-      "bb" 'switch-to-buffer
-      "k"  'kill-buffer
-      "se" (lambda () (interactive)
-             (find-file "~/.emacs.d/emacs-init.org"))
-      "x"  'execute-extended-command)))
+    (defun init/evil-leader-group (prefix name)
+      "Creates an evil leader group"
+      (let ((command (intern (concat "group:" name))))
+      (define-prefix-command command)
+      (evil-leader/set-key prefix command)))
+
+    (req-package evil-leader
+      :ensure evil-leader
+      :require helm
+      :init
+      (progn
+        (evil-leader/set-leader "<SPC>")
+        (global-evil-leader-mode)
+        (dolist (group '(("b" . "buffer")
+                         ("e" . "emacs")
+                         ("f" . "files")
+                         ("w" . "window")))
+          (init/evil-leader-group (car group) (cdr group)))
+        (evil-leader/set-key
+          "ff"  'find-file
+          "bb"  'switch-to-buffer
+          "bk"  'kill-buffer
+          "ee"  (lambda ()
+                  "Edit ~/.emacs.d/emacs-init.org"
+                  (interactive)
+                  (find-file "~/.emacs.d/emacs-init.org"))
+          "x"   'execute-extended-command
+          ":"   'execute-extended-command)))
 #+END_SRC
 
 * Major Modes
@@ -83,9 +96,14 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
-(req-package flycheck
-  :ensure flycheck
-  :init (add-hook 'after-init-hook 'global-flycheck-mode))
+  (req-package flycheck
+    :ensure flycheck
+    :init
+    (progn
+      (global-flycheck-mode t))
+    :config
+    (progn
+      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -110,16 +128,17 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   :idle (global-git-gutter-mode))
 #+END_SRC
 ** Guide key
+[[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
 #+BEGIN_SRC emacs-lisp
-(req-package guide-key
-  :init
-  (progn
-    (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-h" "C-c")
-          guide-key/recursive-key-sequence-flag t
-          guide-key/highlight-command-regexp "group:"
-          guide-key/text-scale-amount 1
-          guide-key/idle-delay 0.2)
-    (guide-key-mode t)))
+  (req-package guide-key
+    :init
+    (progn
+      (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-h" "C-c")
+            guide-key/recursive-key-sequence-flag t
+            guide-key/highlight-command-regexp "group:"
+            guide-key/text-scale-amount 1
+            guide-key/idle-delay 0.2))
+    :idle (guide-key-mode t))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
