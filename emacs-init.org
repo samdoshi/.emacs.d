@@ -28,14 +28,10 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package evil
   :ensure evil
-  :require (ace-jump-mode evil-leader key-chord undo-tree)
+  :require (evil-leader undo-tree)
   :init
   (progn
-    (evil-mode 1)
-    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-    (bind-key "SPC" 'ace-jump-char-mode evil-motion-state-map)
-    (bind-key "S-SPC" 'ace-jump-word-mode evil-motion-state-map)
-    (add-to-list 'evil-insert-state-modes 'deft-mode)))
+    (evil-mode 1)))
 #+END_SRC
 
 ** Evil leader
@@ -45,14 +41,13 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   :require helm
   :init
   (progn
-    (evil-leader/set-leader ",")
+    (evil-leader/set-leader "<SPC>")
     (global-evil-leader-mode)
+    (define-prefix-command 'group:buffer)
     (evil-leader/set-key
       "e"  'find-file
-      "b"  'switch-to-buffer
-      "d"  'deft
-      "f"  'helm-flycheck
-      "h"  'helm-mini
+      "b"  'group:buffer
+      "bb" 'switch-to-buffer
       "k"  'kill-buffer
       "se" (lambda () (interactive)
              (find-file "~/.emacs.d/emacs-init.org"))
@@ -77,11 +72,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+END_SRC
 
 * Minor Modes
-** Ace jump mode
-#+BEGIN_SRC emacs-lisp
-(req-package ace-jump-mode
-  :ensure ace-jump-mode)
-#+END_SRC
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
 (req-package adaptive-wrap
@@ -124,8 +114,10 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 (req-package guide-key
   :init
   (progn
-    (setq guide-key/guide-key-sequence `("," "g" "C-h" "C-c")
+    (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-h" "C-c")
           guide-key/recursive-key-sequence-flag t
+          guide-key/highlight-command-regexp "group:"
+          guide-key/text-scale-amount 1
           guide-key/idle-delay 0.2)
     (guide-key-mode t)))
 #+END_SRC
