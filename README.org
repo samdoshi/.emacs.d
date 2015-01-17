@@ -85,6 +85,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("e"  . "emacs")
                        ("f"  . "files")
                        ("g"  . "git")
+                       ("p"  . "projectile")
                        ("t"  . "text")
                        ("tr" . "rainbow")
                        ("w"  . "window")))
@@ -100,6 +101,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "gs"  'magit-status
         "g+"  'git-gutter:stage-hunk
         "g-"  'git-gutter:revert-hunk
+        "pp"  'helm-projectile
         "trb" 'rainbow-blocks-mode
         "trd" 'rainbow-delimiters-mode
         "x"   'helm-M-x
@@ -188,15 +190,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
 (req-package helm
   :ensure helm
-  :require popwin
   :diminish helm-mode
   :config
   (progn
     (require 'helm-config)
     (require 'helm-files)
-    (setq popwin:special-display-config
-          (append helm-popwin
-                  popwin:special-display-config))
     (bind-key "C-j" 'helm-next-line helm-map)
     (bind-key "C-k" 'helm-previous-line helm-map)
     (bind-key "C-S-j" 'helm-next-source helm-map)
@@ -239,6 +237,21 @@ Line numbers in programming modes
             ("^\*helm.+\*$" :regexp t :height 20)))))
 #+END_SRC
 
+** Projectile
+#+BEGIN_SRC emacs-lisp
+  (req-package projectile
+    :defer t
+    :config
+    (progn
+      (projectile-global-mode)))
+
+  (req-package helm-projectile
+    :require (projectile helm)
+    :commands (helm-projectile)
+    :config
+    (progn
+      (helm-projectile-on)))
+#+END_SRC
 ** Rainbow delimiters
 #+BEGIN_SRC emacs-lisp
 (req-package rainbow-delimiters
