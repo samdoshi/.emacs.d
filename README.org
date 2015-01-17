@@ -45,6 +45,7 @@
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path (concat user-emacs-directory "init/"))
   (require 'init-keybindings)
+  (require 'init-utils)
 #+END_SRC
 *** req-package
 [[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
@@ -89,13 +90,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("w"  . "window")))
         (init/evil-leader-group (car group) (cdr group)))
       (evil-leader/set-key
+        "ba"  'init/alternate-buffer
         "bb"  'helm-mini
         "bd"  'evil-delete-buffer
         "bk"  'kill-buffer
-        "ee"  (lambda ()
-                "Edit ~/.emacs.d/README.org"
-                (interactive)
-                (find-file "~/.emacs.d/README.org"))
+        "ee"  'init/edit-emacs-README.org
         "ff"  'helm-find-files
         "gd"  'magit-diff-working-tree
         "gs"  'magit-status
