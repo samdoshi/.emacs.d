@@ -1,15 +1,19 @@
-#+TITLE: Emacs Init
 #+AUTHOR: Sam Doshi
 #+EMAIL: sam@metal-fish.co.uk
 
 * Emacs Init as an Org file
 ** Installation
-1. Install [[https://github.com/cask/cask][Cask]].
+1. Install [[https://github.com/cask/cask][Cask]]
   #+BEGIN_SRC sh
-  $ brew install cask
+  brew install cask
   #+END_SRC
-2. Run =cask install= from your =~/.emacs.d= directory
-3. Run emacs!
+2. Clone
+  #+BEGIN_SRC sh
+  cd ~
+  git clone git@github.com:samdoshi/.emacs.d.git
+  #+END_SRC
+3. Run =cask install= from your =~/.emacs.d= directory
+4. Run emacs!
 ** Todo
 - rainbow-identifiers
 - spell check
@@ -19,6 +23,7 @@
 - eldoc mode for elisp
 - add help menu, with k,v,w
 - pallet?
+- rust
 
 ** Useful links
 *** Emacs as an Org file
@@ -95,7 +100,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
           ":"   'helm-M-x)))
 #+END_SRC
 
-* Major Modes
+* Major modes
 ** Magit
 #+BEGIN_SRC emacs-lisp
 (req-package magit)
@@ -109,10 +114,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       (setq org-startup-indented t
             org-src-tabs-acts-natively t
             org-src-fontify-natively t)))
-
 #+END_SRC
 
-* Minor Modes
+* Minor modes
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
 (req-package adaptive-wrap
@@ -191,16 +195,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     ;; for find-file
     (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
     (helm-mode 1)))
-#+END_SRC
-
-** Key chord
-#+BEGIN_SRC emacs-lisp
-(req-package key-chord
-  :ensure key-chord
-  :init
-  (progn
-    (setq key-chord-two-keys-delay 0.2)
-    (key-chord-mode 1)))
 #+END_SRC
 
 ** Linum
@@ -364,13 +358,10 @@ Insert a # with Option-3 on a Mac
 ** Backups and autosave files
 Place them in the tmp directory
 #+BEGIN_SRC emacs-lisp
-(req-package files
-  :init
-  (progn
-    (setq backup-directory-alist
-          `((".*" . ,temporary-file-directory)))
-    (setq auto-save-file-name-transforms
-          `((".*" ,temporary-file-directory t)))))
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 #+END_SRC
 
 ** Scratch buffer
