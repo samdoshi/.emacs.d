@@ -298,12 +298,6 @@ Use solarized
     (setq solarized-use-variable-pitch nil)
     (load-theme 'solarized-dark t)))
 #+END_SRC
-
-Fonts
-#+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :height 140)
-#+END_SRC
-
 ** Other GUI settings
 Disable toolbar and scrollbar
 #+BEGIN_SRC emacs-lisp
@@ -393,6 +387,19 @@ Place them in the tmp directory
 (setq initial-scratch-message nil)
 #+END_SRC
 
+* Host settings
+Per host settings
+#+BEGIN_SRC emacs-lisp
+  (let ((hashed-host (init/hashed-host-slug)))
+    (message (concat "init/hashed-host-slug=" (init/hashed-host-slug)))
+    (cond ((equal hashed-host "24e0c4b6b602908fd5cc6be519f8d96b")
+           (progn
+             (when window-system (set-frame-size (selected-frame) 120 84))
+             (set-face-attribute 'default nil :height 140))
+           t ;; fallback
+           (progn
+             (set-face-attribute 'default nil :height 140)))))
+#+END_SRC
 * Fulfill requirements
 #+BEGIN_SRC emacs-lisp
 (req-package-finish)

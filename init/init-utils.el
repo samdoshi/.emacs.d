@@ -8,4 +8,11 @@
   (interactive)
   (find-file "~/.emacs.d/README.org"))
 
+(defun init/hashed-host-slug ()
+  "Return a hashed version of the top-level domain name"
+  (md5 (concat "UGXp4Adb.p8m;baTN8ybKxebV"
+               (car (split-string (downcase (system-name))
+                                  "\\.")))))
+
 (provide 'init-utils)
+
