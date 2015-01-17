@@ -1,3 +1,4 @@
-.cask/
-auto-save-list/
-emacs-init.el
+/.cask/
+/auto-save-list/
+/README.el
+

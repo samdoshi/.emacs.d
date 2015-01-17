@@ -1,11 +1,384 @@
-#+TITLE: Emacs Init README
+#+TITLE: Emacs Init
 #+AUTHOR: Sam Doshi
 #+EMAIL: sam@metal-fish.co.uk
 
-* README.org
+* Emacs Init as an Org file
+** Installation
 1. Install [[https://github.com/cask/cask][Cask]].
   #+BEGIN_SRC sh
   $ brew install cask
   #+END_SRC
 2. Run =cask install= from your =~/.emacs.d= directory
 3. Run emacs!
+** Todo
+- rainbow-identifiers
+- spell check
+- powerline
+- evil-escape
+- evil-lisp-state
+- eldoc mode for elisp
+- add help menu, with k,v,w
+- pallet?
+
+** Useful links
+*** Emacs as an Org file
+- [[https://github.com/jhenahan/emacs.d/blob/master/emacs-init.org][jhenahan/emacs.d]]
+- [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa/emacs.d]]
+- [[https://github.com/steckerhalter/steckemacs/blob/master/steckemacs.org][steckerhalter/steckemacs]]
+*** Evil
+- [[https://github.com/syl20bnr/spacemacs][syl20bnr/spacemacs]]
+- [[https://github.com/xiaohanyu/oh-my-emacs][xiaohanyu/oh-my-emacs]]
+*** Other
+- [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
+- [[https://github.com/emacs-tw/awesome-emacs][emacs-tw/awesome-emacs]]
+- [[http://emacsthemes.caisah.info/][emacsthemes.caisah.info]]
+
+** Initialize req-package
+[[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
+#+BEGIN_SRC emacs-lisp
+(require 'req-package)
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+ #+END_SRC
+
+* Evil
+** Evil
+Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
+#+BEGIN_SRC emacs-lisp
+(setq evil-want-C-u-scroll t)
+(setq evil-want-C-w-in-emacs-state t)
+(setq evil-default-cursor t)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(req-package evil
+  :ensure evil
+  :require (evil-leader undo-tree)
+  :init
+  (progn
+    (evil-mode 1)))
+#+END_SRC
+
+** Evil leader
+#+BEGIN_SRC emacs-lisp
+    (defun init/evil-leader-group (prefix name)
+      "Creates an evil leader group"
+      (let ((command (intern (concat "group:" name))))
+      (define-prefix-command command)
+      (evil-leader/set-key prefix command)))
+
+    (req-package evil-leader
+      :ensure evil-leader
+      :require helm
+      :init
+      (progn
+        (evil-leader/set-leader "<SPC>")
+        (global-evil-leader-mode)
+        (dolist (group '(("b"  . "buffer")
+                         ("e"  . "emacs")
+                         ("f"  . "files")
+                         ("t"  . "text")
+                         ("tr" . "rainbow")
+                         ("w"  . "window")))
+          (init/evil-leader-group (car group) (cdr group)))
+        (evil-leader/set-key
+          "bb"  'switch-to-buffer
+          "bd"  'evil-delete-buffer
+          "bk"  'kill-buffer
+          "ee"  (lambda ()
+                  "Edit ~/.emacs.d/README.org"
+                  (interactive)
+                  (find-file "~/.emacs.d/README.org"))
+          "ff"  'find-file
+          "trb" 'rainbow-blocks-mode
+          "trd" 'rainbow-delimiters-mode
+          "x"   'helm-M-x
+          ":"   'helm-M-x)))
+#+END_SRC
+
+* Major Modes
+** Magit
+#+BEGIN_SRC emacs-lisp
+(req-package magit)
+#+END_SRC
+** Org
+#+BEGIN_SRC emacs-lisp
+  (req-package org-install
+    :ensure org
+    :init
+    (progn
+      (setq org-startup-indented t
+            org-src-tabs-acts-natively t
+            org-src-fontify-natively t)))
+
+#+END_SRC
+
+* Minor Modes
+** Adaptive wrap
+#+BEGIN_SRC emacs-lisp
+(req-package adaptive-wrap
+  :ensure adaptive-wrap
+  :init
+  (progn
+    (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)))
+#+END_SRC
+
+** Flycheck
+#+BEGIN_SRC emacs-lisp
+  (req-package flycheck
+    :ensure flycheck
+    :init
+    (progn
+      (global-flycheck-mode t))
+    :config
+    (progn
+      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(req-package helm-flycheck
+  :commands helm-flycheck
+  :require flycheck)
+#+END_SRC
+
+** Flyspell
+#+BEGIN_SRC emacs-lisp
+;;(req-package flyspell
+;;  :init
+;;  (progn
+;;    (add-hook 'text-mode-hook 'flyspell-mode)
+;;    (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
+#+END_SRC
+
+** Git gutter fringe
+#+BEGIN_SRC emacs-lisp
+(req-package git-gutter-fringe
+  :diminish git-gutter-mode
+  :idle (global-git-gutter-mode))
+#+END_SRC
+** Guide key
+[[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
+#+BEGIN_SRC emacs-lisp
+  (req-package guide-key
+    :diminish guide-key-mode
+    :init
+    (progn
+      (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-h" "C-c")
+            guide-key/recursive-key-sequence-flag t
+            guide-key/highlight-command-regexp "group:"
+            guide-key/text-scale-amount 1
+            guide-key/idle-delay 0.2)
+      (guide-key-mode t)))
+#+END_SRC
+** Helm
+#+BEGIN_SRC emacs-lisp
+(req-package helm
+  :ensure helm
+  :require popwin
+  :diminish helm-mode
+  :config
+  (progn
+    (require 'helm-config)
+    (require 'helm-files)
+    (setq popwin:special-display-config
+          (append helm-popwin
+                  popwin:special-display-config))
+    (bind-key "C-j" 'helm-next-line helm-map)
+    (bind-key "C-k" 'helm-previous-line helm-map)
+    (bind-key "C-S-j" 'helm-next-source helm-map)
+    (bind-key "C-S-k" 'helm-previous-source helm-map)
+    ;; for helm-find-files
+    (bind-key "<tab>" 'helm-execute-persistent-action helm-find-files-map)
+    ;; for find-file
+    (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
+    (helm-mode 1)))
+#+END_SRC
+
+** Key chord
+#+BEGIN_SRC emacs-lisp
+(req-package key-chord
+  :ensure key-chord
+  :init
+  (progn
+    (setq key-chord-two-keys-delay 0.2)
+    (key-chord-mode 1)))
+#+END_SRC
+
+** Linum
+Line numbers in programming modes
+#+BEGIN_SRC emacs-lisp
+(req-package linum
+  :config
+  (progn
+    (add-hook 'prog-mode-hook
+              '(lambda () (linum-mode 1)))
+    (setq-default linum-format "%4d")))
+#+END_SRC
+
+** Pallet
+#+BEGIN_SRC emacs-lisp
+(req-package pallet
+  :init
+  (progn
+    (if nil pallet-init)))
+#+END_SRC
+
+** Popwin
+#+BEGIN_SRC emacs-lisp
+(req-package popwin
+  :ensure popwin
+  :config
+  (progn
+    (popwin-mode 1)
+    (setq helm-popwin
+          '(("*Helm Find Files*" :height 20)
+            ("^\*helm.+\*$" :regexp t :height 20)))))
+#+END_SRC
+
+** Rainbow delimiters
+#+BEGIN_SRC emacs-lisp
+(req-package rainbow-delimiters
+  :ensure rainbow-delimiters
+  :commands rainbow-delimiters-mode)
+#+END_SRC
+
+** Rainbow blocks
+Probably want to customise the colours used by solarized for this mode.
+#+BEGIN_SRC emacs-lisp
+(req-package rainbow-blocks
+  :ensure rainbow-blocks
+  :commands rainbow-blocks-mode)
+#+END_SRC
+
+** Undo tree
+#+BEGIN_SRC emacs-lisp
+(req-package undo-tree
+  :ensure undo-tree
+  :diminish ""
+  :init
+  (progn
+    (global-undo-tree-mode)))
+#+END_SRC
+** Whitespace
+#+BEGIN_SRC emacs-lisp
+    (req-package whitespace
+      :diminish global-whitespace-mode
+      :init
+      (setq whitespace-style (quote (face tabs newline trailing tab-mark)))
+      (global-whitespace-mode 1))
+#+END_SRC
+
+* GUI
+** Theme
+Use solarized
+#+BEGIN_SRC emacs-lisp
+(req-package solarized-theme
+  :ensure solarized-theme
+  :init
+  (progn
+    (setq solarized-distinct-fringe-background t)
+    (setq solarized-use-more-italic t)
+    (setq solarized-use-variable-pitch nil)
+    (load-theme 'solarized-dark t)))
+#+END_SRC
+
+Fonts
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :height 140)
+#+END_SRC
+
+** Other GUI settings
+Disable toolbar and scrollbar
+#+BEGIN_SRC emacs-lisp
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+END_SRC
+
+Only display the menu bar when on a GUI
+#+BEGIN_SRC emacs-lisp
+(unless (display-graphic-p) (menu-bar-mode -1))
+#+END_SRC
+
+Be quiet
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-echo-area-message t)
+(setq inhibit-startup-message t)
+#+END_SRC
+
+Change buffer font sizes with Super-{-=0}
+#+BEGIN_SRC emacs-lisp
+(setq text-scale-mode-step 1.1)
+(bind-key "s-=" '(lambda () (interactive) (text-scale-increase 1)))
+(bind-key "s--" '(lambda () (interactive) (text-scale-decrease 1)))
+(bind-key "s-0" '(lambda () (interactive) (text-scale-set 0)))
+#+END_SRC
+
+Change frame font sizes with Super-Shift-{-=}
+#+BEGIN_SRC emacs-lisp
+(defun init/change-frame-font-height (delta)
+  (let ((current-height (face-attribute 'default :height)))
+    (set-face-attribute 'default
+                        (selected-frame)
+                        :height (+ current-height delta))))
+(bind-key "s-+" '(lambda () (interactive) (init/change-frame-font-height +10)))
+(bind-key "s-_" '(lambda () (interactive) (init/change-frame-font-height -10)))
+#+END_SRC
+
+Go into full screen with Super-F
+#+BEGIN_SRC emacs-lisp
+(bind-key "s-F" 'toggle-frame-fullscreen)
+#+END_SRC
+
+* Other settings
+** Tab behaviour
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(electric-indent-mode 1)
+#+END_SRC
+
+** Visual lines
+#+BEGIN_SRC emacs-lisp
+(setq-default visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'prog-mode-hook 'turn-on-visual-line-mode)
+(diminish 'visual-line-mode "")
+#+END_SRC
+** # on a Mac
+Insert a # with Option-3 on a Mac
+#+BEGIN_SRC emacs-lisp
+(defun insert-pound ()
+  "Inserts a pound into the buffer"
+  (insert "#"))
+
+(bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
+#+END_SRC
+
+** Path from shell on a Mac
+#+BEGIN_SRC emacs-lisp
+(req-package exec-path-from-shell
+  :init
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)))
+#+END_SRC
+
+** Backups and autosave files
+Place them in the tmp directory
+#+BEGIN_SRC emacs-lisp
+(req-package files
+  :init
+  (progn
+    (setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+    (setq auto-save-file-name-transforms
+          `((".*" ,temporary-file-directory t)))))
+#+END_SRC
+
+** Scratch buffer
+#+BEGIN_SRC emacs-lisp
+(setq initial-scratch-message nil)
+#+END_SRC
+
+* Fulfill requirements
+#+BEGIN_SRC emacs-lisp
+(req-package-finish)
+#+END_SRC
