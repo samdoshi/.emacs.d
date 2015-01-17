@@ -166,7 +166,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :diminish guide-key-mode
     :init
     (progn
-      (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-h" "C-c")
+      (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-c" "C-h" "C-w" "C-x")
             guide-key/recursive-key-sequence-flag t
             guide-key/highlight-command-regexp "group:"
             guide-key/text-scale-amount 1
