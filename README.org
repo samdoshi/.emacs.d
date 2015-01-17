@@ -40,12 +40,18 @@
 - [[https://github.com/emacs-tw/awesome-emacs][emacs-tw/awesome-emacs]]
 - [[http://emacsthemes.caisah.info/][emacsthemes.caisah.info]]
 
-** Initialize req-package
+** Initialise...
+*** The basics
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (concat user-emacs-directory "init/"))
+  (require 'init-keybindings)
+#+END_SRC
+*** req-package
 [[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
 #+BEGIN_SRC emacs-lisp
-(require 'req-package)
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
+  (require 'req-package)
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file)
  #+END_SRC
 
 * Evil
@@ -67,12 +73,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 
 ** Evil leader
 #+BEGIN_SRC emacs-lisp
-  (defun init/evil-leader-group (prefix name)
-    "Creates an evil leader group"
-    (let ((command (intern (concat "group:" name))))
-    (define-prefix-command command)
-    (evil-leader/set-key prefix command)))
-
   (req-package evil-leader
     :ensure evil-leader
     :require helm
