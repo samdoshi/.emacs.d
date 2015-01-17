@@ -65,45 +65,55 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 
 ** Evil leader
 #+BEGIN_SRC emacs-lisp
-    (defun init/evil-leader-group (prefix name)
-      "Creates an evil leader group"
-      (let ((command (intern (concat "group:" name))))
-      (define-prefix-command command)
-      (evil-leader/set-key prefix command)))
+  (defun init/evil-leader-group (prefix name)
+    "Creates an evil leader group"
+    (let ((command (intern (concat "group:" name))))
+    (define-prefix-command command)
+    (evil-leader/set-key prefix command)))
 
-    (req-package evil-leader
-      :ensure evil-leader
-      :require helm
-      :init
-      (progn
-        (evil-leader/set-leader "<SPC>")
-        (global-evil-leader-mode)
-        (dolist (group '(("b"  . "buffer")
-                         ("e"  . "emacs")
-                         ("f"  . "files")
-                         ("t"  . "text")
-                         ("tr" . "rainbow")
-                         ("w"  . "window")))
-          (init/evil-leader-group (car group) (cdr group)))
-        (evil-leader/set-key
-          "bb"  'switch-to-buffer
-          "bd"  'evil-delete-buffer
-          "bk"  'kill-buffer
-          "ee"  (lambda ()
-                  "Edit ~/.emacs.d/README.org"
-                  (interactive)
-                  (find-file "~/.emacs.d/README.org"))
-          "ff"  'find-file
-          "trb" 'rainbow-blocks-mode
-          "trd" 'rainbow-delimiters-mode
-          "x"   'helm-M-x
-          ":"   'helm-M-x)))
+  (req-package evil-leader
+    :ensure evil-leader
+    :require helm
+    :init
+    (progn
+      (evil-leader/set-leader "<SPC>")
+      (global-evil-leader-mode)
+      (dolist (group '(("b"  . "buffer")
+                       ("e"  . "emacs")
+                       ("f"  . "files")
+                       ("g"  . "git")
+                       ("t"  . "text")
+                       ("tr" . "rainbow")
+                       ("w"  . "window")))
+        (init/evil-leader-group (car group) (cdr group)))
+      (evil-leader/set-key
+        "bb"  'switch-to-buffer
+        "bd"  'evil-delete-buffer
+        "bk"  'kill-buffer
+        "ee"  (lambda ()
+                "Edit ~/.emacs.d/README.org"
+                (interactive)
+                (find-file "~/.emacs.d/README.org"))
+        "ff"  'find-file
+        "gd"  'magit-diff-working-tree
+        "gs"  'magit-status
+        "g+"  'git-gutter:stage-hunk
+        "g-"  'git-gutter:revert-hunk
+        "trb" 'rainbow-blocks-mode
+        "trd" 'rainbow-delimiters-mode
+        "x"   'helm-M-x
+        ":"   'helm-M-x)))
 #+END_SRC
 
 * Major modes
 ** Magit
 #+BEGIN_SRC emacs-lisp
-(req-package magit)
+  (req-package magit
+    :commands (magit-status
+               magit-diff
+               magit-diff-working-tree
+               magit-log
+               magit-commit))
 #+END_SRC
 ** Org
 #+BEGIN_SRC emacs-lisp
