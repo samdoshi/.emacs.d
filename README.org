@@ -89,14 +89,14 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("w"  . "window")))
         (init/evil-leader-group (car group) (cdr group)))
       (evil-leader/set-key
-        "bb"  'switch-to-buffer
+        "bb"  'helm-mini
         "bd"  'evil-delete-buffer
         "bk"  'kill-buffer
         "ee"  (lambda ()
                 "Edit ~/.emacs.d/README.org"
                 (interactive)
                 (find-file "~/.emacs.d/README.org"))
-        "ff"  'find-file
+        "ff"  'helm-find-files
         "gd"  'magit-diff-working-tree
         "gs"  'magit-status
         "g+"  'git-gutter:stage-hunk
