@@ -9,15 +9,21 @@
 - powerline
 - evil-escape
 - evil-lisp-state
+- eldoc mode for elisp
 - add help menu, with k,v,w
-- stop helm taking over everything
+- pallet?
+- rename this file to README.org so that GitHub displays as default (merge existing README.org into it)
 
 ** Useful links
+*** Emacs as an Org file
 - [[https://github.com/jhenahan/emacs.d/blob/master/emacs-init.org][jhenahan/emacs.d]]
 - [[https://github.com/daschwa/dotfiles/blob/master/emacs.d/emacs-init.org][daschwa/emacs.d]]
 - [[https://github.com/steckerhalter/steckemacs/blob/master/steckemacs.org][steckerhalter/steckemacs]]
-- [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
+*** Evil
 - [[https://github.com/syl20bnr/spacemacs][syl20bnr/spacemacs]]
+- [[https://github.com/xiaohanyu/oh-my-emacs][xiaohanyu/oh-my-emacs]]
+*** Other
+- [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
 - [[https://github.com/emacs-tw/awesome-emacs][emacs-tw/awesome-emacs]]
 - [[http://emacsthemes.caisah.info/][emacsthemes.caisah.info]]
 
