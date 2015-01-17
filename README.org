@@ -24,6 +24,8 @@
 - add help menu, with k,v,w
 - pallet?
 - rust
+- fortune to scratch
+- eval-sexp-fu
 
 ** Useful links
 *** Emacs as an Org file
