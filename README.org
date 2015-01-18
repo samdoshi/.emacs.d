@@ -26,7 +26,6 @@ Either:
 - evil-lisp-state
 - eldoc mode for elisp
 - add help menu, with k,v,w
-- rust
 - fortune to scratch
 - eval-sexp-fu
 - customize solarized [[http://emacs.stackexchange.com/questions/5501/ipython-shell-theme][stackoverflow 1]] [[http://stackoverflow.com/questions/5600177/can-i-make-tweaks-to-a-color-theme-per-mode][stackoverflow 2]]
@@ -141,6 +140,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
             org-src-fontify-natively t)))
 #+END_SRC
 
+** Rust
+[[https://github.com/rust-lang/rust/tree/master/src/etc/emacs][Homepage]]
+#+BEGIN_SRC emacs-lisp
+  (req-package rust-mode)
+#+END_SRC
 * Minor modes
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
