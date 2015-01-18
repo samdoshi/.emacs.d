@@ -13,7 +13,7 @@
   cd ~
   git clone git@github.com:samdoshi/.emacs.d.git
   #+END_SRC
-3. Run =cask install= from your =~/.emacs.d= directory
+3. Run =reset-cask.sh= from your =~/.emacs.d= directory
 4. Run emacs!
 ** Todo
 - rainbow-identifiers [[https://github.com/syl20bnr/spacemacs/tree/master/contrib/colors][spacemacs - colors]]
@@ -228,10 +228,7 @@ Line numbers in programming modes
 
 ** Pallet
 #+BEGIN_SRC emacs-lisp
-(req-package pallet
-  :init
-  (progn
-    (if nil pallet-init)))
+  (req-package pallet)
 #+END_SRC
 
 ** Popwin
