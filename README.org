@@ -15,6 +15,10 @@
   #+END_SRC
 3. Run =reset-cask.sh= from your =~/.emacs.d= directory
 4. Run emacs!
+** Upgrading packages
+Either:
+- Run =reset-cask.sh= again, particularly if you have removed packages
+- Run =cask upgrade=
 ** Todo
 - rainbow-identifiers [[https://github.com/syl20bnr/spacemacs/tree/master/contrib/colors][spacemacs - colors]]
 - spell check
@@ -22,7 +26,6 @@
 - evil-lisp-state
 - eldoc mode for elisp
 - add help menu, with k,v,w
-- pallet?
 - rust
 - fortune to scratch
 - eval-sexp-fu
@@ -227,6 +230,7 @@ Line numbers in programming modes
 #+END_SRC
 
 ** Pallet
+[[https://github.com/rdallasgray/pallet][Pallet]] is used to provide the =(pallet-init)= command used in =reset-cask.sh=.
 #+BEGIN_SRC emacs-lisp
   (req-package pallet)
 #+END_SRC
