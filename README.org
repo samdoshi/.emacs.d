@@ -18,7 +18,6 @@
 - rainbow-identifiers [[https://github.com/syl20bnr/spacemacs/tree/master/contrib/colors][spacemacs - colors]]
 - spell check
 - powerline
-- evil-escape
 - evil-lisp-state
 - eldoc mode for elisp
 - add help menu, with k,v,w
@@ -110,6 +109,13 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         ":"   'helm-M-x)))
 #+END_SRC
 
+** Evil escape
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-escape
+    :require evil
+    :init (setq-default evil-escape-key-sequence "jk")
+    :config (evil-escape-mode))
+#+END_SRC
 * Major modes
 ** Magit
 #+BEGIN_SRC emacs-lisp
