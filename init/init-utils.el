@@ -3,6 +3,12 @@
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) t)))
 
+(defun init/change-frame-font-height (delta)
+  (let ((current-height (face-attribute 'default :height)))
+    (set-face-attribute 'default
+                        (selected-frame)
+                        :height (+ current-height delta))))
+
 (defun init/edit-emacs-README.org ()
   "Edit ~/.emacs.d/README.org"
   (interactive)
