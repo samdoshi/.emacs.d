@@ -391,12 +391,14 @@ Place them in the tmp directory
 Per host settings
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'default nil :height 140)
-  (let ((hashed-host (init/hashed-host-slug)))
-    (message (concat "init/hashed-host-slug=" hashed-host))
-    (when (equal hashed-host "24e0c4b6b602908fd5cc6be519f8d96b")
+  (let ((host (init/hashed-host-slug))
+        (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
+        (laptop "01328afcdda70c813d331f8e838aa392"))
+    (message (concat "init/hashed-host-slug=" host))
+    (when (equal host desktop)
       (progn
         (when window-system (set-frame-size (selected-frame) 120 84))))
-    (when (equal hashed-host "01328afcdda70c813d331f8e838aa392")
+    (when (equal host laptop)
       (progn
         (when window-system (set-frame-size (selected-frame) 139 52))
         (set-face-attribute 'default nil :height 150))))
