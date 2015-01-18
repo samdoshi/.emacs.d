@@ -1,5 +1,6 @@
 #+AUTHOR: Sam Doshi
 #+EMAIL: sam@metal-fish.co.uk
+#+STARTUP: content
 
 * Emacs Init as an Org file
 ** Installation
