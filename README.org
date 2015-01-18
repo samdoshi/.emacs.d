@@ -390,15 +390,16 @@ Place them in the tmp directory
 * Host settings
 Per host settings
 #+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil :height 140)
   (let ((hashed-host (init/hashed-host-slug)))
-    (message (concat "init/hashed-host-slug=" (init/hashed-host-slug)))
-    (cond ((equal hashed-host "24e0c4b6b602908fd5cc6be519f8d96b")
-           (progn
-             (when window-system (set-frame-size (selected-frame) 120 84))
-             (set-face-attribute 'default nil :height 140))
-           t ;; fallback
-           (progn
-             (set-face-attribute 'default nil :height 140)))))
+    (message (concat "init/hashed-host-slug=" hashed-host))
+    (when (equal hashed-host "24e0c4b6b602908fd5cc6be519f8d96b")
+      (progn
+        (when window-system (set-frame-size (selected-frame) 120 84))))
+    (when (equal hashed-host "01328afcdda70c813d331f8e838aa392")
+      (progn
+        (when window-system (set-frame-size (selected-frame) 139 52))
+        (set-face-attribute 'default nil :height 150))))
 #+END_SRC
 * Fulfill requirements
 #+BEGIN_SRC emacs-lisp
