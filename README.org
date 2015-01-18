@@ -30,6 +30,7 @@ Either:
 - eval-sexp-fu
 - customize solarized [[http://emacs.stackexchange.com/questions/5501/ipython-shell-theme][stackoverflow 1]] [[http://stackoverflow.com/questions/5600177/can-i-make-tweaks-to-a-color-theme-per-mode][stackoverflow 2]]
 - [[http://melpa.org/#/auto-highlight-symbol][auto-highlight-symbol]]
+- customise eshell [[https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-eshell.el][link]]
 
 ** Useful links
 *** Emacs as an Org file
