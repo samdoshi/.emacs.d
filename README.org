@@ -93,6 +93,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("p"  . "projectile")
                        ("t"  . "text")
                        ("tr" . "rainbow")
+                       ("T"  . "theme")
                        ("w"  . "window")))
         (init/evil-leader-group (car group) (cdr group)))
       (evil-leader/set-key
@@ -311,16 +312,28 @@ Probably want to customise the colours used by solarized for this mode.
 
 * GUI
 ** Theme
+#+BEGIN_SRC emacs-lisp
+  (req-package init-theme
+    :require (solarized-theme evil powerline)
+    :config
+    (progn
+      (init/solarized-dark-theme)
+      (evil-leader/set-key
+        "Td"  'init/solarized-dark-theme
+        "Tl"  'init/solarized-light-theme)))
+#+END_SRC
 Use solarized
 #+BEGIN_SRC emacs-lisp
-(req-package solarized-theme
-  :ensure solarized-theme
-  :init
-  (progn
-    (setq solarized-distinct-fringe-background t)
-    (setq solarized-use-more-italic t)
-    (setq solarized-use-variable-pitch nil)
-    (load-theme 'solarized-dark t)))
+  (req-package solarized-theme
+    :init
+    (progn
+      (setq solarized-distinct-fringe-background t)
+      (setq solarized-use-more-italic t)
+      (setq solarized-use-variable-pitch nil)))
+#+END_SRC
+** Powerline
+#+BEGIN_SRC emacs-lisp
+  (req-package powerline)
 #+END_SRC
 ** Other GUI settings
 Disable toolbar and scrollbar
