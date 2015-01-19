@@ -99,6 +99,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("w"  . "window")))
         (init/evil-leader-group (car group) (cdr group)))
       (evil-leader/set-key
+        "<SPC>" 'ace-jump-word-mode
         "ba"  'init/alternate-buffer
         "bb"  'helm-mini
         "bd"  'evil-delete-buffer
@@ -150,6 +151,12 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (req-package rust-mode)
 #+END_SRC
 * Minor modes
+** Ace jump
+#+BEGIN_SRC emacs-lisp
+  (req-package ace-jump-mode
+    :commands (ace-jump-word-mode))
+
+#+END_SRC
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
 (req-package adaptive-wrap
