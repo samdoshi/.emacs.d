@@ -284,6 +284,13 @@ Probably want to customise the colours used by solarized for this mode.
       (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)))
 #+END_SRC
 
+** Rainbow mode
+#+BEGIN_SRC emacs-lisp
+  (req-package rainbow-mode
+    :config
+    (progn
+      (add-hook 'prog-mode-hook 'rainbow-mode)))
+#+END_SRC
 ** Undo tree
 #+BEGIN_SRC emacs-lisp
 (req-package undo-tree
