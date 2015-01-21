@@ -5,7 +5,7 @@
   "evil-state to string"
   (symbol-name state))
 
-(defun init/powerline-evil-state-name ()
+(defun init/current-evil-state-name ()
   "Format evil-state for use on LHS of powerline"
   (format " %-9s" (upcase (init/evil-state-name evil-state))))
 
@@ -25,7 +25,8 @@
                       :box (face-attribute 'mode-line :box)
                       :inherit 'mode-line))
 
-(defun init/powerline-evil-state-face ()
+(defun init/current-evil-state-face ()
+  "Get the face corresponding to the current evil state for use by powerline"
   (init/evil-state-face-name evil-state))
 
 (defun init/mode-line-prepare-left ()
@@ -33,48 +34,68 @@
          (line-face (if active 'mode-line 'mode-line-inactive))
          (face1 (if active 'powerline-active1 'powerline-inactive1))
          (face2 (if active 'powerline-active2 'powerline-inactive2))
-         (state-face (if active (init/powerline-evil-state-face) 'mode-line-inactive)))
+         (state-face (if active (init/current-evil-state-face) 'powerline-inactive1))
+         (separator-left (intern (format "powerline-%s-%s"
+                                         powerline-default-separator
+                                         (car powerline-default-separator-dir))))
+         (separator-right (intern (format "powerline-%s-%s"
+                                          powerline-default-separator
+                                          (cdr powerline-default-separator-dir)))))
     (list
-     (powerline-raw (init/powerline-evil-state-name) state-face)
-     (powerline-raw "%*" line-face)
-     (powerline-raw " " line-face)
-     (powerline-buffer-size line-face)
-     (powerline-raw " " line-face)
-     (powerline-buffer-id line-face)
-     (powerline-raw " " line-face)
-     (powerline-vc line-face)
-     (powerline-raw " " line-face)
-     (powerline-major-mode face1)
-     (powerline-process face1)
+     (powerline-raw (init/current-evil-state-name) state-face)
+     (funcall separator-left state-face face1)
      (powerline-raw " " face1)
-     (powerline-minor-modes face1)
-     (powerline-narrow face1)
-     (powerline-raw " " face1))))
+     (powerline-buffer-id face1)
+     (powerline-raw "%*" face1)
+     (powerline-raw " " face1)
+     (powerline-major-mode face1)
+     (powerline-raw " " face1)
+     (funcall separator-left face1 face2)
+     (powerline-vc face2)
+     (powerline-raw " " face2)
+     (powerline-process face2)
+     (powerline-narrow face2)
+     (funcall separator-left face2 line-face)
+     (powerline-raw " " line-face))))
 
 (defun init/mode-line-prepare-right ()
   (let* ((active (powerline-selected-window-active))
          (line-face (if active 'mode-line 'mode-line-inactive))
          (face1 (if active 'powerline-active1 'powerline-inactive1))
-         (face2 (if active 'powerline-active2 'powerline-inactive2)))
+         (face2 (if active 'powerline-active2 'powerline-inactive2))
+         (state-face (if active (init/current-evil-state-face) 'powerline-inactive1))
+         (separator-left (intern (format "powerline-%s-%s"
+                                         powerline-default-separator
+                                         (car powerline-default-separator-dir))))
+         (separator-right (intern (format "powerline-%s-%s"
+                                          powerline-default-separator
+                                          (cdr powerline-default-separator-dir)))))
     (list
-     (powerline-raw "%4l" face1 'r)
-     (powerline-raw ":" face1)
-     (powerline-raw "%3c" face1 'r)
-     (powerline-raw " " face1))))
+     (funcall separator-right line-face face2)
+     (powerline-raw " " face2)
+     (powerline-minor-modes face2)
+     (powerline-raw " " face2)
+     (funcall separator-right face2 state-face)
+     (powerline-raw " " state-face)
+     (powerline-buffer-size state-face)
+     (powerline-raw "%4l" state-face 'r)
+     (powerline-raw ":" state-face)
+     (powerline-raw "%3c" state-face 'r)
+     (powerline-raw " " state-face))))
 
 (defun init/mode-line-prepare ()
   "This is the powerline fun that get's evaluated each time"
   (let* ((active (powerline-selected-window-active))
-         (face2 (if active 'powerline-active2 'powerline-inactive2))
+         (line-face (if active 'mode-line 'mode-line-inactive))
          (lhs (init/mode-line-prepare-left))
          (rhs (init/mode-line-prepare-right)))
     (concat (powerline-render lhs)
-            (powerline-fill face2 (powerline-width rhs))
+            (powerline-fill line-face (powerline-width rhs))
             (powerline-render rhs))))
 
 (defun init/powerline-theme ()
   "Set up powerline"
-  (setq-default powerline-default-separator 'wave)
+  (setq-default powerline-default-separator 'nil)
   (setq-default powerline-height 17)
   (setq-default mode-line-format
                 '("%e" (:eval (init/mode-line-prepare)))))
@@ -108,6 +129,24 @@
                       :overline nil
                       :underline nil
                       :box nil)
+  (set-face-attribute 'mode-line-inactive nil
+                      :overline nil
+                      :underline nil
+                      :box nil)
+  (set-face-attribute 'mode-line-buffer-id nil
+                      :foreground init/solarized-orange)
+  (set-face-attribute 'powerline-active1 nil
+                      :foreground init/solarized-base1
+                      :background init/solarized-base02)
+  (set-face-attribute 'powerline-inactive1 nil
+                      :foreground init/solarized-base1
+                      :background init/solarized-base02)
+  (set-face-attribute 'powerline-active2 nil
+                      :foreground init/solarized-base03
+                      :background init/solarized-base0)
+  (set-face-attribute 'powerline-inactive2 nil
+                      :foreground init/solarized-base0
+                      :background init/solarized-base03)
   (set-face-attribute 'linum nil
                       :foreground init/solarized-base01
                       :height 0.8)
