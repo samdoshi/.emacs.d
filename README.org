@@ -150,6 +150,14 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 [[https://github.com/rust-lang/rust/tree/master/src/etc/emacs][Homepage]]
 #+BEGIN_SRC emacs-lisp
   (req-package rust-mode)
+
+  (req-package flycheck-rust
+    :require (rust-mode flycheck)
+    :commands flycheck-rust-setup
+    :init
+    (progn
+      (eval-after-load 'flycheck
+        '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup))))
 #+END_SRC
 * Minor modes
 ** Ace jump
