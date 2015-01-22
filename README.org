@@ -121,6 +121,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
   (req-package evil-escape
     :require evil
+    :diminish evil-escape-mode
     :init (setq-default evil-escape-key-sequence "jk")
     :config (evil-escape-mode))
 #+END_SRC
