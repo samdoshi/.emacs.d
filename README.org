@@ -335,7 +335,7 @@ Probably want to customise the colours used by solarized for this mode.
     :require (solarized-theme evil powerline)
     :config
     (progn
-      (init/solarized-dark-theme)
+      (init/solarized-light-theme)
       (evil-leader/set-key
         "Td"  'init/solarized-dark-theme
         "Tl"  'init/solarized-light-theme)))

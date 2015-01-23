@@ -122,9 +122,7 @@
 (defconst init/solarized-cyan      "#2aa198")
 (defconst init/solarized-green     "#859900")
 
-(defun init/solarized-dark-theme ()
-  (interactive)
-  (load-theme 'solarized-dark t)
+(defun init/solarized-common ()
   (set-face-attribute 'mode-line nil
                       :overline nil
                       :underline nil
@@ -134,7 +132,12 @@
                       :underline nil
                       :box nil)
   (set-face-attribute 'mode-line-buffer-id nil
-                      :foreground init/solarized-orange)
+                      :foreground init/solarized-orange))
+
+(defun init/solarized-dark-theme ()
+  (interactive)
+  (load-theme 'solarized-dark t)
+  (init/solarized-common)
   (set-face-attribute 'powerline-active1 nil
                       :foreground init/solarized-base1
                       :background init/solarized-base02)
@@ -161,6 +164,28 @@
 (defun init/solarized-light-theme ()
   (interactive)
   (load-theme 'solarized-light t)
+  (init/solarized-common)
+  (set-face-attribute 'powerline-active1 nil
+                      :foreground init/solarized-base01
+                      :background init/solarized-base2)
+  (set-face-attribute 'powerline-inactive1 nil
+                      :foreground init/solarized-base1
+                      :background init/solarized-base2)
+  (set-face-attribute 'powerline-active2 nil
+                      :foreground init/solarized-base01
+                      :background init/solarized-base3)
+  (set-face-attribute 'powerline-inactive2 nil
+                      :foreground init/solarized-base1
+                      :background init/solarized-base2)
+  (set-face-attribute 'linum nil
+                      :foreground init/solarized-base1
+                      :height 0.8)
+  (init/evil-state-face 'normal  init/solarized-base2 init/solarized-blue)
+  (init/evil-state-face 'insert  init/solarized-base3  init/solarized-green)
+  (init/evil-state-face 'visual  init/solarized-base3  init/solarized-orange)
+  (init/evil-state-face 'replace init/solarized-base3  init/solarized-magenta)
+  (init/evil-state-face 'emacs   init/solarized-base3  init/solarized-base00)
+  (init/evil-state-face 'motion  init/solarized-base2 init/solarized-blue)
   (init/common-theme))
 
 (provide 'init-theme)
