@@ -219,7 +219,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
             guide-key/recursive-key-sequence-flag t
             guide-key/highlight-command-regexp "group:"
             guide-key/text-scale-amount 1
-            guide-key/idle-delay 0.2)
+            guide-key/idle-delay 0.3)
       (guide-key-mode t)))
 #+END_SRC
 ** Helm
@@ -231,6 +231,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (progn
     (require 'helm-config)
     (require 'helm-files)
+    (setq helm-split-window-in-side-p t)
     (bind-key "C-j" 'helm-next-line helm-map)
     (bind-key "C-k" 'helm-previous-line helm-map)
     (bind-key "C-S-j" 'helm-next-source helm-map)
