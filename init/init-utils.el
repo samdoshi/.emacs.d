@@ -1,3 +1,5 @@
+(require 's)
+
 (defun init/alternate-buffer ()
   "Switch back and forth between current and last buffer."
   (interactive)
@@ -19,6 +21,14 @@
   (md5 (concat "UGXp4Adb.p8m;baTN8ybKxebV"
                (car (split-string (downcase (system-name))
                                   "\\.")))))
+
+(defun init/initial-scratch-message ()
+  (let* ((scratch-buffer (get-buffer "*scratch*"))
+         (fortune (shell-command-to-string "cowsay $(fortune -s -n 300)"))
+         (fortune (s-lines fortune))
+         (fortune (mapconcat #'(lambda (x) (s-trim-right (concat ";;  " x))) fortune "\n"))
+         (fortune (concat fortune "\n\n")))
+    fortune))
 
 (provide 'init-utils)
 

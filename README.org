@@ -26,7 +26,6 @@ Either:
 - evil-lisp-state
 - eldoc mode for elisp
 - add help menu, with k,v,w
-- fortune to scratch
 - eval-sexp-fu
 - [[http://melpa.org/#/auto-highlight-symbol][auto-highlight-symbol]]
 - customise eshell [[https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-eshell.el][link]]
@@ -46,19 +45,18 @@ Either:
 - [[http://emacsthemes.caisah.info/][emacsthemes.caisah.info]]
 
 ** Initialise...
-*** The basics
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path (concat user-emacs-directory "init/"))
-  (require 'init-keybindings)
-  (require 'init-utils)
-#+END_SRC
 *** req-package
 [[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
 #+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (concat user-emacs-directory "init/"))
   (require 'req-package)
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file)
- #+END_SRC
+#+END_SRC
+*** The basics
+#+BEGIN_SRC emacs-lisp
+  (req-package s)
+#+END_SRC
 
 * Evil
 ** Evil
@@ -83,7 +81,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
   (req-package evil-leader
     :ensure evil-leader
-    :require helm
+    :require (helm init-keybindings)
     :init
     (progn
       (evil-leader/set-leader "<SPC>")
@@ -433,26 +431,26 @@ Place them in the tmp directory
       `((".*" ,temporary-file-directory t)))
 #+END_SRC
 
-** Scratch buffer
-#+BEGIN_SRC emacs-lisp
-(setq initial-scratch-message nil)
-#+END_SRC
-
 * Host settings
 Per host settings
 #+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'default nil :height 140)
-  (let ((host (init/hashed-host-slug))
-        (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
-        (laptop "01328afcdda70c813d331f8e838aa392"))
-    (message (concat "init/hashed-host-slug=" host))
-    (when (equal host desktop)
-      (progn
-        (when window-system (set-frame-size (selected-frame) 120 84))))
-    (when (equal host laptop)
-      (progn
-        (when window-system (set-frame-size (selected-frame) 139 52))
-        (set-face-attribute 'default nil :height 150))))
+  (req-package init-utils
+    :require (s exec-path-from-shell)
+    :config
+    (progn
+      (setq initial-scratch-message (init/initial-scratch-message))
+      (set-face-attribute 'default nil :height 140)
+      (let ((host (init/hashed-host-slug))
+            (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
+            (laptop "01328afcdda70c813d331f8e838aa392"))
+        (message (concat "init/hashed-host-slug=" host))
+        (when (equal host desktop)
+          (progn
+            (when window-system (set-frame-size (selected-frame) 120 84))))
+        (when (equal host laptop)
+          (progn
+            (when window-system (set-frame-size (selected-frame) 139 52))
+            (set-face-attribute 'default nil :height 150))))))
 #+END_SRC
 * Fulfill requirements
 #+BEGIN_SRC emacs-lisp
