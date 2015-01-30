@@ -6,12 +6,12 @@
 ** Installation
 1. Install [[https://github.com/cask/cask][Cask]]
   #+BEGIN_SRC sh
-  brew install cask
+    brew install cask
   #+END_SRC
 2. Clone
   #+BEGIN_SRC sh
-  cd ~
-  git clone git@github.com:samdoshi/.emacs.d.git
+    cd ~
+    git clone git@github.com:samdoshi/.emacs.d.git
   #+END_SRC
 3. Run =reset-cask.sh= from your =~/.emacs.d= directory
 4. Run emacs!
@@ -22,7 +22,6 @@ Either:
 ** Todo
 - rainbow-identifiers [[https://github.com/syl20bnr/spacemacs/tree/master/contrib/colors][spacemacs - colors]]
 - spell check
-- powerline
 - evil-lisp-state
 - eldoc mode for elisp
 - add help menu, with k,v,w
@@ -43,7 +42,6 @@ Either:
 - [[https://github.com/cofi/dotfiles/tree/master/emacs.d/config][cofi/dotfiles]]
 - [[https://github.com/emacs-tw/awesome-emacs][emacs-tw/awesome-emacs]]
 - [[http://emacsthemes.caisah.info/][emacsthemes.caisah.info]]
-
 ** Initialise...
 *** req-package
 [[https://github.com/edvorg/req-package][req-package]] extends [[https://github.com/jwiegley/use-package][use-package]], each =req-package= macro will be run once =req-package-finish= is run (at the bottom of this file).
@@ -56,8 +54,17 @@ Either:
 *** The basics
 #+BEGIN_SRC emacs-lisp
   (req-package s)
+  (req-package init-keybindings)
+  (req-package init-utils
+    :requires (s))
+  (req-package init-theme
+    :require (solarized-theme evil-leader powerline)
+    :config
+    (progn
+      (evil-leader/set-key
+        "Td"  'init/solarized-dark-theme
+        "Tl"  'init/solarized-light-theme)))
 #+END_SRC
-
 * Evil
 ** Evil
 Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
@@ -76,7 +83,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (progn
     (evil-mode 1)))
 #+END_SRC
-
 ** Evil leader
 #+BEGIN_SRC emacs-lisp
   (req-package evil-leader
@@ -114,7 +120,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "x"   'helm-M-x
         ":"   'helm-M-x)))
 #+END_SRC
-
 ** Evil escape
 #+BEGIN_SRC emacs-lisp
   (req-package evil-escape
@@ -143,7 +148,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
             org-src-tabs-acts-natively t
             org-src-fontify-natively t)))
 #+END_SRC
-
 ** Rust
 [[https://github.com/rust-lang/rust/tree/master/src/etc/emacs][Homepage]]
 #+BEGIN_SRC emacs-lisp
@@ -162,7 +166,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
   (req-package ace-jump-mode
     :commands (ace-jump-word-mode))
-
 #+END_SRC
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
@@ -172,7 +175,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (progn
     (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)))
 #+END_SRC
-
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
   (req-package flycheck
@@ -183,14 +185,10 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :config
     (progn
       (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+  (req-package helm-flycheck
+    :commands helm-flycheck
+    :require flycheck)
 #+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(req-package helm-flycheck
-  :commands helm-flycheck
-  :require flycheck)
-#+END_SRC
-
 ** Flyspell
 #+BEGIN_SRC emacs-lisp
 ;;(req-package flyspell
@@ -199,12 +197,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ;;    (add-hook 'text-mode-hook 'flyspell-mode)
 ;;    (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
 #+END_SRC
-
 ** Git gutter fringe
 #+BEGIN_SRC emacs-lisp
-(req-package git-gutter-fringe
-  :diminish git-gutter-mode
-  :idle (global-git-gutter-mode))
+  (req-package git-gutter-fringe
+    :diminish git-gutter-mode
+    :idle (global-git-gutter-mode))
 #+END_SRC
 ** Guide key
 [[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
@@ -244,32 +241,29 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ** Linum
 Line numbers in programming modes
 #+BEGIN_SRC emacs-lisp
-(req-package linum
-  :config
-  (progn
-    (add-hook 'prog-mode-hook
-              '(lambda () (linum-mode 1)))
-    (setq-default linum-format "%4d")))
+  (req-package linum
+    :config
+    (progn
+      (add-hook 'prog-mode-hook
+                '(lambda () (linum-mode 1)))
+      (setq-default linum-format "%4d")))
 #+END_SRC
-
 ** Pallet
 [[https://github.com/rdallasgray/pallet][Pallet]] is used to provide the =(pallet-init)= command used in =reset-cask.sh=.
 #+BEGIN_SRC emacs-lisp
   (req-package pallet)
 #+END_SRC
-
 ** Popwin
 #+BEGIN_SRC emacs-lisp
-(req-package popwin
-  :ensure popwin
-  :config
-  (progn
-    (popwin-mode 1)
-    (setq helm-popwin
-          '(("*Helm Find Files*" :height 20)
-            ("^\*helm.+\*$" :regexp t :height 20)))))
+  (req-package popwin
+    :ensure popwin
+    :config
+    (progn
+      (popwin-mode 1)
+      (setq helm-popwin
+            '(("*Helm Find Files*" :height 20)
+              ("^\*helm.+\*$" :regexp t :height 20)))))
 #+END_SRC
-
 ** Projectile
 #+BEGIN_SRC emacs-lisp
   (req-package projectile
@@ -285,13 +279,12 @@ Line numbers in programming modes
     (progn
       (helm-projectile-on)))
 #+END_SRC
-
 ** Rainbow blocks
 Probably want to customise the colours used by solarized for this mode.
 #+BEGIN_SRC emacs-lisp
-(req-package rainbow-blocks
-  :ensure rainbow-blocks
-  :commands rainbow-blocks-mode)
+  (req-package rainbow-blocks
+    :ensure rainbow-blocks
+    :commands rainbow-blocks-mode)
 #+END_SRC
 ** Rainbow delimiters
 #+BEGIN_SRC emacs-lisp
@@ -301,7 +294,6 @@ Probably want to customise the colours used by solarized for this mode.
     (progn
       (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)))
 #+END_SRC
-
 ** Rainbow mode
 #+BEGIN_SRC emacs-lisp
   (req-package rainbow-mode
@@ -311,34 +303,23 @@ Probably want to customise the colours used by solarized for this mode.
 #+END_SRC
 ** Undo tree
 #+BEGIN_SRC emacs-lisp
-(req-package undo-tree
-  :ensure undo-tree
-  :diminish ""
-  :init
-  (progn
-    (global-undo-tree-mode)))
+  (req-package undo-tree
+    :ensure undo-tree
+    :diminish ""
+    :init
+    (progn
+      (global-undo-tree-mode)))
 #+END_SRC
 ** Whitespace
 #+BEGIN_SRC emacs-lisp
-    (req-package whitespace
-      :diminish global-whitespace-mode
-      :init
-      (setq whitespace-style (quote (face tabs newline trailing tab-mark)))
-      (global-whitespace-mode 1))
+  (req-package whitespace
+    :diminish global-whitespace-mode
+    :init
+    (setq whitespace-style (quote (face tabs newline trailing tab-mark)))
+    (global-whitespace-mode 1))
 #+END_SRC
-
 * GUI
 ** Theme
-#+BEGIN_SRC emacs-lisp
-  (req-package init-theme
-    :require (solarized-theme evil powerline)
-    :config
-    (progn
-      (init/solarized-light-theme)
-      (evil-leader/set-key
-        "Td"  'init/solarized-dark-theme
-        "Tl"  'init/solarized-light-theme)))
-#+END_SRC
 Use solarized
 #+BEGIN_SRC emacs-lisp
   (req-package solarized-theme
@@ -352,107 +333,103 @@ Use solarized
 #+BEGIN_SRC emacs-lisp
   (req-package powerline)
 #+END_SRC
-** Other GUI settings
-Disable toolbar and scrollbar
-#+BEGIN_SRC emacs-lisp
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-#+END_SRC
-
-Only display the menu bar when on a GUI
-#+BEGIN_SRC emacs-lisp
-(unless (display-graphic-p) (menu-bar-mode -1))
-#+END_SRC
-
-Be quiet
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-echo-area-message t)
-(setq inhibit-startup-message t)
-#+END_SRC
-
-Change buffer font sizes with Super-{-=0}
-#+BEGIN_SRC emacs-lisp
-(setq text-scale-mode-step 1.1)
-(bind-key "s-=" '(lambda () (interactive) (text-scale-increase 1)))
-(bind-key "s--" '(lambda () (interactive) (text-scale-decrease 1)))
-(bind-key "s-0" '(lambda () (interactive) (text-scale-set 0)))
-#+END_SRC
-
-Change frame font sizes with Super-Shift-{-=}
-#+BEGIN_SRC emacs-lisp
-(bind-key "s-+" '(lambda () (interactive) (init/change-frame-font-height +10)))
-(bind-key "s-_" '(lambda () (interactive) (init/change-frame-font-height -10)))
-#+END_SRC
-
-Go into full screen with Super-F
-#+BEGIN_SRC emacs-lisp
-(bind-key "s-F" 'toggle-frame-fullscreen)
-#+END_SRC
-
 * Other settings
-** Tab behaviour
+** Exec path from shell
 #+BEGIN_SRC emacs-lisp
-(setq-default indent-tabs-mode nil)
-(electric-indent-mode 1)
+  (req-package exec-path-from-shell)
 #+END_SRC
-
+* Load packages
+#+BEGIN_SRC emacs-lisp
+  (req-package-finish)
+#+END_SRC
+* Post package settings
 ** Visual lines
 #+BEGIN_SRC emacs-lisp
-(setq-default visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-(add-hook 'prog-mode-hook 'turn-on-visual-line-mode)
-(diminish 'visual-line-mode "")
+  (setq-default visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+  (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+  (add-hook 'prog-mode-hook 'turn-on-visual-line-mode)
+  (diminish 'visual-line-mode "")
+#+END_SRC
+** Tab behaviour
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (electric-indent-mode 1)
+#+END_SRC
+** Host settings
+Per host settings
+#+BEGIN_SRC emacs-lisp
+  (setq initial-scratch-message (init/initial-scratch-message))
+  (set-face-attribute 'default nil :height 140)
+  (init/solarized-light-theme)
+  (let ((host (init/hashed-host-slug))
+        (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
+        (laptop "01328afcdda70c813d331f8e838aa392"))
+    (message (concat "init/hashed-host-slug=" host))
+    (when (equal host desktop)
+      (progn
+        (when window-system (set-frame-size (selected-frame) 120 84))))
+    (when (equal host laptop)
+      (progn
+        (when window-system (set-frame-size (selected-frame) 139 52))
+        (set-face-attribute 'default nil :height 150))))
 #+END_SRC
 ** # on a Mac
 Insert a # with Option-3 on a Mac
 #+BEGIN_SRC emacs-lisp
-(defun insert-pound ()
-  "Inserts a pound into the buffer"
-  (insert "#"))
+  (defun insert-pound ()
+    "Inserts a pound into the buffer"
+    (insert "#"))
 
-(bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
+  (bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
 #+END_SRC
-
 ** Path from shell on a Mac
 #+BEGIN_SRC emacs-lisp
-(req-package exec-path-from-shell
-  :init
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize))
 #+END_SRC
-
 ** Backups and autosave files
 Place them in the tmp directory
 #+BEGIN_SRC emacs-lisp
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+  (setq backup-directory-alist
+        `((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t)))
+#+END_SRC
+** Other GUI settings
+Disable toolbar and scrollbar
+#+BEGIN_SRC emacs-lisp
+  (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 #+END_SRC
 
-* Host settings
-Per host settings
+Only display the menu bar when on a GUI
 #+BEGIN_SRC emacs-lisp
-  (req-package init-utils
-    :require (s exec-path-from-shell)
-    :config
-    (progn
-      (setq initial-scratch-message (init/initial-scratch-message))
-      (set-face-attribute 'default nil :height 140)
-      (let ((host (init/hashed-host-slug))
-            (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
-            (laptop "01328afcdda70c813d331f8e838aa392"))
-        (message (concat "init/hashed-host-slug=" host))
-        (when (equal host desktop)
-          (progn
-            (when window-system (set-frame-size (selected-frame) 120 84))))
-        (when (equal host laptop)
-          (progn
-            (when window-system (set-frame-size (selected-frame) 139 52))
-            (set-face-attribute 'default nil :height 150))))))
+  (unless (display-graphic-p) (menu-bar-mode -1))
 #+END_SRC
-* Fulfill requirements
+
+Be quiet
 #+BEGIN_SRC emacs-lisp
-(req-package-finish)
+  (setq inhibit-splash-screen t)
+  (setq inhibit-startup-echo-area-message t)
+  (setq inhibit-startup-message t)
 #+END_SRC
+
+Change buffer font sizes with Super-{-=0}
+#+BEGIN_SRC emacs-lisp
+  (setq text-scale-mode-step 1.1)
+  (bind-key "s-=" '(lambda () (interactive) (text-scale-increase 1)))
+  (bind-key "s--" '(lambda () (interactive) (text-scale-decrease 1)))
+  (bind-key "s-0" '(lambda () (interactive) (text-scale-set 0)))
+#+END_SRC
+
+Change frame font sizes with Super-Shift-{-=}
+#+BEGIN_SRC emacs-lisp
+  (bind-key "s-+" '(lambda () (interactive) (init/change-frame-font-height +10)))
+  (bind-key "s-_" '(lambda () (interactive) (init/change-frame-font-height -10)))
+#+END_SRC
+
+Go into full screen with Super-F
+#+BEGIN_SRC emacs-lisp
+  (bind-key "s-F" 'toggle-frame-fullscreen)
+#+END_SRC
+
