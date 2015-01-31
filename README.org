@@ -28,7 +28,6 @@ Either:
 - eval-sexp-fu
 - [[http://melpa.org/#/auto-highlight-symbol][auto-highlight-symbol]]
 - customise eshell [[https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-eshell.el][link]]
-- smartparens
 
 ** Useful links
 *** Emacs as an Org file
@@ -300,6 +299,29 @@ Probably want to customise the colours used by solarized for this mode.
     :config
     (progn
       (add-hook 'prog-mode-hook 'rainbow-mode)))
+#+END_SRC
+** Smartparens
+#+BEGIN_SRC emacs-lisp
+  (req-package smartparens-config
+    :ensure smartparens
+    :init
+    (progn
+      (add-hook 'prog-mode-hook 'smartparens-mode)
+      (add-hook 'prog-mode-hook 'show-smartparens-mode))
+    :config
+    (progn
+      ;; play nicely with evil
+      (setq sp-show-pair-from-inside t)
+      (defun init/smartparens-pair-newline-and-indent (&rest _ignored)
+        ;; https://github.com/Fuco1/smartparens/issues/80
+        (save-excursion
+          (newline)
+          (indent-according-to-mode))
+        (indent-according-to-mode))
+      (sp-pair "{" nil :post-handlers
+               '(:add (init/smartparens-pair-newline-and-indent "RET")))
+      (sp-pair "[" nil :post-handlers
+               '(:add (init/smartparens-pair-newline-and-indent "RET")))))
 #+END_SRC
 ** Undo tree
 #+BEGIN_SRC emacs-lisp
