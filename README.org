@@ -150,7 +150,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ** Rust
 [[https://github.com/rust-lang/rust/tree/master/src/etc/emacs][Homepage]]
 #+BEGIN_SRC emacs-lisp
-  (req-package rust-mode)
+  (req-package rust-mode
+    :init
+    (progn
+      (setq-default rust-indent-method-chain nil
+                    rust-indent-offset 4)))
 
   (req-package flycheck-rust
     :require (rust-mode flycheck)
