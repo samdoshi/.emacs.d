@@ -93,9 +93,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       (global-evil-leader-mode)
       (dolist (group '(("b"  . "buffer")
                        ("e"  . "emacs")
-                       ("f"  . "files")
+                       ("F"  . "files")
                        ("g"  . "git")
-                       ("p"  . "projectile")
+                       ("P"  . "projectile")
                        ("t"  . "text")
                        ("tr" . "rainbow")
                        ("T"  . "theme")
@@ -107,13 +107,14 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "bb"  'helm-mini
         "bd"  'evil-delete-buffer
         "bk"  'kill-buffer
+        "bK"  'kill-this-buffer
         "ee"  'init/edit-emacs-README.org
-        "ff"  'helm-find-files
+        "f"  'helm-find-files
         "gd"  'magit-diff-working-tree
         "gs"  'magit-status
         "g+"  'git-gutter:stage-hunk
         "g-"  'git-gutter:revert-hunk
-        "pp"  'helm-projectile
+        "p"  'helm-projectile
         "trb" 'rainbow-blocks-mode
         "trd" 'rainbow-delimiters-mode
         "x"   'helm-M-x
