@@ -103,22 +103,31 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         (init/evil-leader-group (car group) (cdr group)))
       (evil-leader/set-key
         "<SPC>" 'ace-jump-word-mode
-        "ba"  'init/alternate-buffer
-        "bb"  'helm-mini
-        "bd"  'evil-delete-buffer
-        "bk"  'kill-buffer
-        "bK"  'kill-this-buffer
-        "ee"  'init/edit-emacs-README.org
-        "f"  'helm-find-files
-        "gd"  'magit-diff-working-tree
-        "gs"  'magit-status
-        "g+"  'git-gutter:stage-hunk
-        "g-"  'git-gutter:revert-hunk
-        "p"  'helm-projectile
-        "trb" 'rainbow-blocks-mode
-        "trd" 'rainbow-delimiters-mode
-        "x"   'helm-M-x
-        ":"   'helm-M-x)))
+        "ba"    'init/alternate-buffer
+        "bb"    'helm-mini
+        "bd"    'evil-delete-buffer
+        "bk"    'kill-buffer
+        "bK"    'kill-this-buffer
+        "ee"    'init/edit-emacs-README.org
+        "f"     'helm-find-files
+        "gd"    'magit-diff-working-tree
+        "gs"    'magit-status
+        "g+"    'git-gutter:stage-hunk
+        "g-"    'git-gutter:revert-hunk
+        "p"     'helm-projectile
+        "trb"   'rainbow-blocks-mode
+        "trd"   'rainbow-delimiters-mode
+        "wc"    'evil-window-delete
+        "wh"    'evil-window-left
+        "wj"    'evil-window-down
+        "wk"    'evil-window-up
+        "wl"    'evil-window-right
+        "wr"    'evil-window-rotate-downwards
+        "ws"    'evil-window-split
+        "wv"    'evil-window-vsplit
+        "ww"    'evil-window-next
+        "x"     'helm-M-x
+        ":"     'helm-M-x)))
 #+END_SRC
 ** Evil escape
 #+BEGIN_SRC emacs-lisp
