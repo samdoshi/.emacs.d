@@ -24,7 +24,6 @@ Either:
 - spell check
 - evil-lisp-state
 - eldoc mode for elisp
-- add help menu, with k,v,w
 - eval-sexp-fu
 - [[http://melpa.org/#/auto-highlight-symbol][auto-highlight-symbol]]
 - customise eshell [[https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-eshell.el][link]]
@@ -95,6 +94,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("e"  . "emacs")
                        ("F"  . "files")
                        ("g"  . "git")
+                       ("h"  . "help")
                        ("P"  . "projectile")
                        ("t"  . "text")
                        ("tr" . "rainbow")
@@ -114,6 +114,13 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "gs"    'magit-status
         "g+"    'git-gutter:stage-hunk
         "g-"    'git-gutter:revert-hunk
+        "hc"    'describe-char
+        "hf"    'describe-function
+        "hk"    'describe-key
+        "hm"    'describe-mode
+        "hp"    'describe-package
+        "ht"    'describe-theme
+        "hv"    'describe-variable
         "p"     'helm-projectile
         "trb"   'rainbow-blocks-mode
         "trd"   'rainbow-delimiters-mode
