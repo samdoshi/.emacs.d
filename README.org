@@ -396,7 +396,7 @@ Per host settings
 #+BEGIN_SRC emacs-lisp
   (setq initial-scratch-message (init/initial-scratch-message))
   (set-face-attribute 'default nil :height 140)
-  (init/solarized-light-theme)
+  (init/solarized-dark-theme)
   (let ((host (init/hashed-host-slug))
         (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
         (laptop "01328afcdda70c813d331f8e838aa392"))
