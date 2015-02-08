@@ -1,9 +1,9 @@
 (require 's)
 
 (defun init/alternate-buffer ()
-  "Switch back and forth between current and last buffer."
+  "Switch back and forth between current and last (non-visible) buffer"
   (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) t)))
+  (switch-to-buffer (other-buffer (current-buffer) nil)))
 
 (defun init/change-frame-font-height (delta)
   (let ((current-height (face-attribute 'default :height)))
