@@ -30,6 +30,15 @@
          (fortune (concat fortune "\n\n")))
     fortune))
 
+(defun init/kill-buffer-named (name)
+  (let ((buffer (get-buffer name)))
+    (if buffer
+        (kill-buffer buffer))))
+
+(defun init/kill-compilation-buffer ()
+  (interactive)
+  (init/kill-buffer-named "*compilation*"))
+
 (defun init/small-font-buffer ()
   (text-scale-decrease 2))
 

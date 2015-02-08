@@ -91,6 +91,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       (evil-leader/set-leader "<SPC>")
       (global-evil-leader-mode)
       (dolist (group '(("b"  . "buffer")
+                       ("c"  . "compile")
                        ("e"  . "emacs")
                        ("F"  . "files")
                        ("g"  . "git")
@@ -108,6 +109,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "bd"    'evil-delete-buffer
         "bk"    'kill-buffer
         "bK"    'kill-this-buffer
+        "cc"    'init/kill-compilation-buffer
+        "cm"    'recompile
         "ee"    'init/edit-emacs-README.org
         "f"     'helm-find-files
         "gd"    'magit-diff-working-tree
