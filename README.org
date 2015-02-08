@@ -139,6 +139,23 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :config (evil-escape-mode))
 #+END_SRC
 * Major modes
+** Compilation
+#+BEGIN_SRC emacs-lisp
+  (req-package compile
+    :require (init-utils)
+    :init
+    (progn
+      (add-hook 'compilation-mode-hook 'init/small-font-buffer)))
+
+#+END_SRC
+** Eshell
+#+BEGIN_SRC emacs-lisp
+  (req-package eshell
+    :require (init-utils)
+    :init
+    (progn
+      (add-hook 'eshell-mode-hook 'init/small-font-buffer)))
+#+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp
   (req-package magit

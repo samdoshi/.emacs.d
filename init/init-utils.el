@@ -30,6 +30,9 @@
          (fortune (concat fortune "\n\n")))
     fortune))
 
+(defun init/small-font-buffer ()
+  (text-scale-decrease 2))
+
 (defun init/split-window-and-focus ()
   (interactive)
   (split-window-vertically)
