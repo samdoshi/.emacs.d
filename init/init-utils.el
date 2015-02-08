@@ -30,5 +30,15 @@
          (fortune (concat fortune "\n\n")))
     fortune))
 
+(defun init/split-window-and-focus ()
+  (interactive)
+  (split-window-vertically)
+  (other-window 1))
+
+(defun init/vsplit-window-and-focus ()
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1))
+
 (provide 'init-utils)
 

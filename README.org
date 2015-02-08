@@ -86,7 +86,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
   (req-package evil-leader
     :ensure evil-leader
-    :require (helm init-keybindings)
+    :require (helm init-keybindings init-utils)
     :init
     (progn
       (evil-leader/set-leader "<SPC>")
@@ -123,9 +123,10 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "wk"    'evil-window-up
         "wl"    'evil-window-right
         "wr"    'evil-window-rotate-downwards
-        "ws"    'evil-window-split
-        "wv"    'evil-window-vsplit
+        "ws"    'init/split-window-and-focus
+        "wv"    'init/vsplit-window-and-focus
         "ww"    'evil-window-next
+        "wW"    'evil-window-prev
         "x"     'helm-M-x
         ":"     'helm-M-x)))
 #+END_SRC
