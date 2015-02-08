@@ -161,7 +161,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ** Eshell
 #+BEGIN_SRC emacs-lisp
   (req-package eshell
-    :require (init-utils)
+    :defer t
+    :require (exec-path-from-shell init-utils)
     :init
     (progn
       (add-hook 'eshell-mode-hook 'init/small-font-buffer)))
@@ -401,8 +402,13 @@ Use solarized
 #+END_SRC
 * Other settings
 ** Exec path from shell
+Get the path from a shell on a Mac
 #+BEGIN_SRC emacs-lisp
-  (req-package exec-path-from-shell)
+  (req-package exec-path-from-shell
+    :init
+    (progn
+      (when (memq window-system '(mac ns))
+        (exec-path-from-shell-initialize))))
 #+END_SRC
 * Load packages
 #+BEGIN_SRC emacs-lisp
@@ -447,11 +453,6 @@ Insert a # with Option-3 on a Mac
     (insert "#"))
 
   (bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
-#+END_SRC
-** Path from shell on a Mac
-#+BEGIN_SRC emacs-lisp
-  (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize))
 #+END_SRC
 ** Backups and autosave files
 Place them in the tmp directory
