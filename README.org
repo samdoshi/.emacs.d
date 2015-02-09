@@ -27,6 +27,7 @@ Either:
 - eval-sexp-fu
 - [[http://melpa.org/#/auto-highlight-symbol][auto-highlight-symbol]]
 - customise eshell [[https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-eshell.el][link]]
+- yas (integrate with company [[https://github.com/syl20bnr/spacemacs/blob/master/contrib/company-mode/packages.el][spacemacs]]
 
 ** Useful links
 *** Emacs as an Org file
@@ -218,6 +219,17 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   :init
   (progn
     (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)))
+#+END_SRC
+** Company
+#+BEGIN_SRC emacs-lisp
+  (req-package company
+    :init
+    (progn
+      (setq company-idle-delay 0.0
+            company-minimum-prefix-length 2))
+    :config
+    (progn
+      (global-company-mode t)))
 #+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
