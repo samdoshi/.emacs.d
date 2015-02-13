@@ -146,7 +146,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (req-package evil-escape
     :require evil
     :diminish evil-escape-mode
-    :init (setq-default evil-escape-key-sequence "jk")
+    :init (setq-default evil-escape-key-sequence "kj")
     :config (evil-escape-mode))
 #+END_SRC
 * Major modes
