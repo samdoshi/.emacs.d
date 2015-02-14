@@ -128,6 +128,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "p"     'helm-projectile
         "trb"   'rainbow-blocks-mode
         "trd"   'rainbow-delimiters-mode
+        "v"     'er/expand-region
         "wc"    'evil-window-delete
         "wh"    'evil-window-left
         "wj"    'evil-window-down
@@ -230,6 +231,17 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :config
     (progn
       (global-company-mode t)))
+#+END_SRC
+** Expand region
+Enable expand region in visual mode with an extra =v=
+#+BEGIN_SRC emacs-lisp
+  (req-package expand-region
+    :defer t
+    :commands er/expand-region
+    :init
+    (progn
+      (setq expand-region-contract-fast-key "V"
+            expand-region-reset-fast-key    "r")))
 #+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
