@@ -52,17 +52,16 @@ Either:
 #+END_SRC
 *** The basics
 #+BEGIN_SRC emacs-lisp
+  (req-package f)
   (req-package s)
   (req-package init-keybindings)
   (req-package init-utils
     :requires (s))
   (req-package init-theme
-    :require (solarized-theme evil-leader powerline)
-    :config
-    (progn
-      (evil-leader/set-key
-        "Td"  'init/solarized-dark-theme
-        "Tl"  'init/solarized-light-theme)))
+    :require (solarized-theme evil-leader powerline))
+  (req-package init-notes
+    :require (helm f)
+    :commands init/helm-notes)
 #+END_SRC
 * Evil
 ** Evil
@@ -125,8 +124,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "hp"    'describe-package
         "ht"    'describe-theme
         "hv"    'describe-variable
+        "n"     'init/helm-notes
         "p"     'helm-projectile
         "trb"   'rainbow-blocks-mode
+        "Td"    'init/solarized-dark-theme
+        "Tl"    'init/solarized-light-theme
         "trd"   'rainbow-delimiters-mode
         "v"     'er/expand-region
         "wc"    'evil-window-delete
