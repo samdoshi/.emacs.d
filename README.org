@@ -62,6 +62,8 @@ Either:
   (req-package init-notes
     :require (helm f)
     :commands init/helm-notes)
+  (req-package init-macros
+    :require (evil))
 #+END_SRC
 * Evil
 ** Evil
@@ -97,6 +99,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("g"  . "git")
                        ("h"  . "help")
                        ("P"  . "projectile")
+                       ("m"  . "major-mode")
                        ("t"  . "text")
                        ("tr" . "rainbow")
                        ("T"  . "theme")
@@ -124,6 +127,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "hp"    'describe-package
         "ht"    'describe-theme
         "hv"    'describe-variable
+        "m'"    'org-edit-src-exit
         "n"     'init/helm-notes
         "p"     'helm-projectile
         "trb"   'rainbow-blocks-mode
@@ -174,11 +178,52 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ** Magit
 #+BEGIN_SRC emacs-lisp
   (req-package magit
+    :require (init-macros)
     :commands (magit-status
                magit-diff
                magit-diff-working-tree
                magit-log
-               magit-commit))
+               magit-commit)
+    :config
+    (progn
+      (init|evilify magit-commit-mode-map
+                    (kbd "C-j") 'magit-goto-next-section
+                    (kbd "C-k") 'magit-goto-previous-section
+                    (kbd "C-n") 'magit-goto-next-section
+                    (kbd "C-p") 'magit-goto-previous-section
+                    (kbd "C-v") 'magit-revert-item)
+      (init|evilify magit-log-mode-map
+                    (kbd "C-j") 'magit-goto-next-section
+                    (kbd "C-k") 'magit-goto-previous-section
+                    (kbd "C-n") 'magit-goto-next-section
+                    (kbd "C-p") 'magit-goto-previous-section
+                    (kbd "C-v") 'magit-revert-item)
+      (init|evilify magit-process-mode-map
+                    (kbd "C-j") 'magit-goto-next-section
+                    (kbd "C-k") 'magit-goto-previous-section
+                    (kbd "C-n") 'magit-goto-next-section
+                    (kbd "C-p") 'magit-goto-previous-section
+                    (kbd "C-v") 'magit-revert-item)
+      (init|evilify magit-branch-manager-mode-map
+                    "K" 'magit-discard-item
+                    "L" 'magit-key-mode-popup-logging
+                    (kbd "C-j") 'magit-goto-next-section
+                    (kbd "C-k") 'magit-goto-previous-section
+                    (kbd "C-n") 'magit-goto-next-section
+                    (kbd "C-p") 'magit-goto-previous-section
+                    (kbd "C-v") 'magit-revert-item)
+      (init|evilify magit-status-mode-map
+                    "q" 'magit-mode-quit-window
+                    "s" 'magit-stage-item
+                    "u" 'magit-unstage-item
+                    "K" 'magit-discard-item
+                    "L" 'magit-key-mode-popup-logging
+                    "H" 'magit-key-mode-popup-diff-options
+                    (kbd "C-j") 'magit-goto-next-section
+                    (kbd "C-k") 'magit-goto-previous-section
+                    (kbd "C-n") 'magit-goto-next-section
+                    (kbd "C-p") 'magit-goto-previous-section
+                    (kbd "C-v") 'magit-revert-item)))
 #+END_SRC
 ** Markdown
 [[http://jblevins.org/projects/markdown-mode/][Markdown mode]]
@@ -186,11 +231,15 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (req-package markdown-mode)
 #+END_SRC
 ** Org
+[[http://orgmode.org/][Org mode]]
 #+BEGIN_SRC emacs-lisp
   (req-package org-install
     :ensure org
     :init
     (progn
+      (evil-leader/set-key-for-mode 'org-mode
+        "ml"  'org-insert-link
+        "m'"  'org-edit-special)
       (setq org-startup-indented t
             org-src-tabs-acts-natively t
             org-src-fontify-natively t)))
