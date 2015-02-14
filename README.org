@@ -213,9 +213,6 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                     (kbd "C-p") 'magit-goto-previous-section
                     (kbd "C-v") 'magit-revert-item)
       (init|evilify magit-status-mode-map
-                    "q" 'magit-mode-quit-window
-                    "s" 'magit-stage-item
-                    "u" 'magit-unstage-item
                     "K" 'magit-discard-item
                     "L" 'magit-key-mode-popup-logging
                     "H" 'magit-key-mode-popup-diff-options
