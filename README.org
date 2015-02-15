@@ -21,9 +21,6 @@ Either:
 - Run =cask upgrade=
 ** Todo
 - rainbow-identifiers [[https://github.com/syl20bnr/spacemacs/tree/master/contrib/colors][spacemacs - colors]]
-- spell check
-  - https://github.com/xuchunyang/osx-dictionary.el
-  - https://github.com/pronobis/helm-flyspell
 - evil-lisp-state
 - eldoc mode for elisp
 - eval-sexp-fu
@@ -132,6 +129,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "m'"    'org-edit-src-exit
         "n"     'init/helm-notes
         "p"     'helm-projectile
+        "tc"    'helm-flyspell-correct
+        "td"    'osx-dictionary-search-pointer
         "tf"    'init/flyspell-mode
         "trb"   'rainbow-blocks-mode
         "trd"   'rainbow-delimiters-mode
@@ -319,6 +318,11 @@ Enable expand region in visual mode with an extra =v=
 #+BEGIN_SRC emacs-lisp
   (req-package flyspell
     :require (ispell))
+
+  (req-package helm-flyspell
+    :require (flyspell helm)
+    :defer t
+    :commands (helm-flyspell-correct))
 #+END_SRC
 ** Git gutter fringe
 #+BEGIN_SRC emacs-lisp
@@ -378,6 +382,12 @@ Line numbers in programming modes
       (add-hook 'prog-mode-hook
                 '(lambda () (linum-mode 1)))
       (setq-default linum-format "%4d")))
+#+END_SRC
+** OSX Dictionary
+#+BEGIN_SRC emacs-lisp
+  (req-package osx-dictionary
+    :defer t
+    :commands (osx-dictionary-search-pointer osx-dictionary-search-input))
 #+END_SRC
 ** Pallet
 [[https://github.com/rdallasgray/pallet][Pallet]] is used to provide the =(pallet-init)= command used in =reset-cask.sh=.
