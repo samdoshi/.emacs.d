@@ -281,6 +281,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ** Company
 #+BEGIN_SRC emacs-lisp
   (req-package company
+    :diminish "Ⓒ "
     :init
     (progn
       (setq company-idle-delay 0.0
@@ -424,13 +425,14 @@ Line numbers in programming modes
 Probably want to customise the colours used by solarized for this mode.
 #+BEGIN_SRC emacs-lisp
   (req-package rainbow-blocks
-    :ensure rainbow-blocks
-    :commands rainbow-blocks-mode)
+    :commands rainbow-blocks-mode
+    :diminish "")
 #+END_SRC
 ** Rainbow delimiters
 #+BEGIN_SRC emacs-lisp
   (req-package rainbow-delimiters
     :commands rainbow-delimiters-mode
+    :diminish ""
     :init
     (progn
       (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)))
@@ -438,6 +440,7 @@ Probably want to customise the colours used by solarized for this mode.
 ** Rainbow mode
 #+BEGIN_SRC emacs-lisp
   (req-package rainbow-mode
+    :diminish rainbow-mode
     :config
     (progn
       (add-hook 'prog-mode-hook 'rainbow-mode)))
@@ -446,6 +449,7 @@ Probably want to customise the colours used by solarized for this mode.
 #+BEGIN_SRC emacs-lisp
   (req-package smartparens-config
     :ensure smartparens
+    :diminish (smartparens-mode . "")
     :init
     (progn
       (add-hook 'prog-mode-hook 'smartparens-mode)
