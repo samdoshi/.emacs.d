@@ -1,4 +1,5 @@
 (require 's)
+(require 'flyspell)
 
 (defun init/alternate-buffer ()
   "Switch back and forth between current and last (non-visible) buffer"
@@ -29,6 +30,14 @@
          (fortune (mapconcat #'(lambda (x) (s-trim-right (concat ";;  " x))) fortune "\n"))
          (fortune (concat fortune "\n\n")))
     fortune))
+
+(defun init/flyspell-mode ()
+  "Enables the correct flyspell mode"
+  (interactive)
+  (when (derived-mode-p 'prog-mode)
+    (flyspell-prog-mode))
+  (when (derived-mode-p 'text-mode)
+    (flyspell-mode)))
 
 (defun init/kill-buffer-named (name)
   (let ((buffer (get-buffer name)))

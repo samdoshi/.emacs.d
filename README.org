@@ -22,12 +22,14 @@ Either:
 ** Todo
 - rainbow-identifiers [[https://github.com/syl20bnr/spacemacs/tree/master/contrib/colors][spacemacs - colors]]
 - spell check
+  - https://github.com/xuchunyang/osx-dictionary.el
+  - https://github.com/pronobis/helm-flyspell
 - evil-lisp-state
 - eldoc mode for elisp
 - eval-sexp-fu
 - [[http://melpa.org/#/auto-highlight-symbol][auto-highlight-symbol]]
 - customise eshell [[https://github.com/technomancy/emacs-starter-kit/blob/v2/modules/starter-kit-eshell.el][link]]
-- yas (integrate with company [[https://github.com/syl20bnr/spacemacs/blob/master/contrib/company-mode/packages.el][spacemacs]]
+- yas (integrate with company [[https://github.com/syl20bnr/spacemacs/blob/master/contrib/company-mode/packages.el][spacemacs]])
 
 ** Useful links
 *** Emacs as an Org file
@@ -56,7 +58,7 @@ Either:
   (req-package s)
   (req-package init-keybindings)
   (req-package init-utils
-    :requires (s))
+    :require (s flyspell))
   (req-package init-theme
     :require (solarized-theme evil-leader powerline))
   (req-package init-notes
@@ -130,10 +132,12 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "m'"    'org-edit-src-exit
         "n"     'init/helm-notes
         "p"     'helm-projectile
+        "tf"    'init/flyspell-mode
         "trb"   'rainbow-blocks-mode
+        "trd"   'rainbow-delimiters-mode
+        "ts"    'ispell
         "Td"    'init/solarized-dark-theme
         "Tl"    'init/solarized-light-theme
-        "trd"   'rainbow-delimiters-mode
         "v"     'er/expand-region
         "wc"    'evil-window-delete
         "wh"    'evil-window-left
@@ -232,11 +236,12 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+BEGIN_SRC emacs-lisp
   (req-package org-install
     :ensure org
+    :require (evil-leader)
     :init
     (progn
       (evil-leader/set-key-for-mode 'org-mode
-        "ml"  'org-insert-link
-        "m'"  'org-edit-special)
+        "ml" 'org-insert-link
+        "m'" 'org-edit-special)
       (setq org-startup-indented t
             org-src-tabs-acts-natively t
             org-src-fontify-natively t)))
@@ -312,11 +317,8 @@ Enable expand region in visual mode with an extra =v=
 #+END_SRC
 ** Flyspell
 #+BEGIN_SRC emacs-lisp
-;;(req-package flyspell
-;;  :init
-;;  (progn
-;;    (add-hook 'text-mode-hook 'flyspell-mode)
-;;    (add-hook 'prog-mode-hook 'flyspell-prog-mode)))
+  (req-package flyspell
+    :require (ispell))
 #+END_SRC
 ** Git gutter fringe
 #+BEGIN_SRC emacs-lisp
@@ -357,6 +359,14 @@ Enable expand region in visual mode with an extra =v=
     ;; for find-file
     (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
     (helm-mode 1)))
+#+END_SRC
+** Ispell
+#+BEGIN_SRC emacs-lisp
+  (req-package ispell
+    :init
+    (progn
+      (setq-default ispell-program-name "aspell")
+      (setq ispell-dictionary "british")))
 #+END_SRC
 
 ** Linum
