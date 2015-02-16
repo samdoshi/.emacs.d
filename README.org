@@ -99,6 +99,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("h"  . "help")
                        ("P"  . "projectile")
                        ("m"  . "major-mode")
+                       ("s"  . "smartparens")
                        ("t"  . "text")
                        ("tr" . "rainbow")
                        ("T"  . "theme")
@@ -129,6 +130,16 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "m'"    'org-edit-src-exit
         "n"     'init/helm-notes
         "p"     'helm-projectile
+        "sb"    'sp-forward-barf-sexp
+        "sB"    'sp-backward-barf-sexp
+        "sc"    'sp-join-sexp
+        "sC"    'sp-split-sexp
+        "sd"    'sp-kill-sexp
+        "sD"    'sp-backward-kill-sexp
+        "sk"    'sp-backward-up-sexp
+        "sj"    'sp-end-of-next-sexp
+        "ss"    'sp-forward-slurp-sexp
+        "sS"    'sp-backward-slurp-sexp
         "tc"    'helm-flyspell-correct
         "td"    'osx-dictionary-search-pointer
         "tf"    'init/flyspell-mode
