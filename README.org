@@ -251,6 +251,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     (progn
       (evil-leader/set-key-for-mode 'org-mode
         "ml" 'org-insert-link
+        "mo" 'org-open-at-point
         "m'" 'org-edit-special)
       (setq org-startup-indented t
             org-src-tabs-acts-natively t
