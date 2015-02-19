@@ -296,10 +296,15 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :diminish "Ⓒ "
     :init
     (progn
-      (setq company-idle-delay 0.0
-            company-minimum-prefix-length 2))
+      (setq company-idle-delay 0.1
+            company-minimum-prefix-length 2
+            company-selection-wrap-around t))
     :config
     (progn
+      (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+      (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+      (define-key company-active-map (kbd "S-TAB") 'company-select-previous-or-abort)
+      (define-key company-active-map [S-tab] 'company-select-previous-or-abort)
       (global-company-mode t)))
 #+END_SRC
 ** Expand region
