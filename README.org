@@ -401,6 +401,13 @@ Line numbers in programming modes
                 '(lambda () (linum-mode 1)))
       (setq-default linum-format "%4d")))
 #+END_SRC
+** Neo tree
+#+BEGIN_SRC emacs-lisp
+  (req-package neotree
+    :init
+    (progn
+      (setq neo-theme 'arrow)))
+#+END_SRC
 ** OSX Dictionary
 #+BEGIN_SRC emacs-lisp
   (req-package osx-dictionary
