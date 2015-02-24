@@ -254,6 +254,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "mo" 'org-open-at-point
         "m'" 'org-edit-special)
       (setq org-startup-indented t
+            org-startup-folded "showall"
             org-src-tabs-acts-natively t
             org-src-fontify-natively t)))
 #+END_SRC
