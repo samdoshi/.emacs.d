@@ -2,4 +2,8 @@
 /.cask/
 /auto-save-list/
 /README.el
+/recentf
+/projectile-bookmarks.eld
+/eshell/*
+!/eshell/alias
 
