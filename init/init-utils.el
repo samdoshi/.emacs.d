@@ -17,6 +17,11 @@
   (interactive)
   (find-file "~/.emacs.d/README.org"))
 
+(defun init/edit-Today.org ()
+  "Edit ~/Dropbox/Notes/Today.org"
+  (interactive)
+  (find-file "~/Dropbox/Notes/Today.org"))
+
 (defun init/hashed-host-slug ()
   "Return a hashed version of the top-level domain name"
   (md5 (concat "UGXp4Adb.p8m;baTN8ybKxebV"

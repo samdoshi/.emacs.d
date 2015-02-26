@@ -129,6 +129,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "hv"    'describe-variable
         "m'"    'org-edit-src-exit
         "n"     'init/helm-notes
+        "N"     'init/edit-Today.org
         "p"     'helm-projectile
         "sb"    'sp-forward-barf-sexp
         "sB"    'sp-backward-barf-sexp
