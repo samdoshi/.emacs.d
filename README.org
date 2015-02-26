@@ -401,6 +401,8 @@ Line numbers in programming modes
     (progn
       (add-hook 'prog-mode-hook
                 '(lambda () (linum-mode 1)))
+      (add-hook 'text-mode-hook
+                '(lambda () (linum-mode 1)))
       (setq-default linum-format "%4d")))
 #+END_SRC
 ** Neo tree
