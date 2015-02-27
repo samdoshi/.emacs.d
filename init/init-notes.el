@@ -1,3 +1,5 @@
+;; superseded by init-helm-deft
+
 (require 'f)
 (require 'helm)
 

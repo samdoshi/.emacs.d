@@ -58,9 +58,9 @@ Either:
     :require (s flyspell))
   (req-package init-theme
     :require (solarized-theme evil-leader powerline))
-  (req-package init-notes
+  (req-package init-helm-deft
     :require (helm f)
-    :commands init/helm-notes)
+    :commands init/helm-deft)
   (req-package init-macros
     :require (evil))
 #+END_SRC
@@ -128,7 +128,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "ht"    'describe-theme
         "hv"    'describe-variable
         "m'"    'org-edit-src-exit
-        "n"     'init/helm-notes
+        "n"     'init/helm-deft
         "N"     'init/edit-Today.org
         "p"     'helm-projectile
         "sb"    'sp-forward-barf-sexp
