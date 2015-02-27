@@ -63,6 +63,8 @@ Either:
     :commands init/helm-deft)
   (req-package init-macros
     :require (evil))
+  (req-package init-eshell
+    :require (eshell))
 #+END_SRC
 * Evil
 ** Evil
@@ -113,8 +115,10 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "bk"    'kill-buffer
         "bK"    'kill-this-buffer
         "cc"    'init/kill-compilation-buffer
+        "cf"    'helm-flycheck
         "cm"    'recompile
         "ee"    'init/edit-emacs-README.org
+        "es"    'eshell
         "f"     'helm-find-files
         "gd"    'magit-diff-working-tree
         "gs"    'magit-status
