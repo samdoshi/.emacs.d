@@ -152,6 +152,7 @@
                       :background init/solarized-base03)
   (set-face-attribute 'linum nil
                       :foreground init/solarized-base01
+                      :underline nil
                       :height 100)
   (init/evil-state-face 'normal  init/solarized-base02 init/solarized-blue)
   (init/evil-state-face 'insert  init/solarized-base2  init/solarized-green)
@@ -179,6 +180,7 @@
                       :background init/solarized-base2)
   (set-face-attribute 'linum nil
                       :foreground init/solarized-base1
+                      :underline nil
                       :height 100)
   (init/evil-state-face 'normal  init/solarized-base2 init/solarized-blue)
   (init/evil-state-face 'insert  init/solarized-base3  init/solarized-green)
