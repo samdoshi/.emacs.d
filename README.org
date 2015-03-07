@@ -65,6 +65,8 @@ Either:
     :require (evil))
   (req-package init-eshell
     :require (eshell))
+  (req-package init-projectile
+    :require (helm projectile))
 #+END_SRC
 * Evil
 ** Evil
@@ -135,6 +137,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "n"     'init/helm-deft
         "N"     'init/edit-Today.org
         "p"     'helm-projectile
+        "Ps"    'init/projectile-eshell
         "sb"    'sp-forward-barf-sexp
         "sB"    'sp-backward-barf-sexp
         "sc"    'sp-join-sexp
@@ -444,7 +447,6 @@ Line numbers in programming modes
 ** Projectile
 #+BEGIN_SRC emacs-lisp
   (req-package projectile
-    :defer t
     :config
     (progn
       (projectile-global-mode)))
