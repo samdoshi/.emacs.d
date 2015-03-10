@@ -639,3 +639,7 @@ Go into full screen with Super-F
   (bind-key "s-F" 'toggle-frame-fullscreen)
 #+END_SRC
 
+Move the position of underlines to the bottomline instead of the baseline
+#+BEGIN_SRC emacs-lisp
+  (setq x-underline-at-descent-line t)
+#+END_SRC
