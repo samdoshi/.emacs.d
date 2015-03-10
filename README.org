@@ -258,9 +258,13 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :init
     (progn
       (evil-leader/set-key-for-mode 'org-mode
-        "ml" 'org-insert-link
-        "mo" 'org-open-at-point
-        "m'" 'org-edit-special)
+        "ml"  'org-insert-link
+        "mn"  'org-narrow-to-subtree
+        "mo"  'org-open-at-point
+        "mtr" 'org-table-recalculate
+        "mtR" 'org-table-iterate
+        "mw"  'widen
+        "m'"  'org-edit-special)
       (setq org-startup-indented t
             org-startup-folded "showall"
             org-src-tab-acts-natively t
