@@ -178,6 +178,12 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :init (setq-default evil-escape-key-sequence "kj")
     :config (evil-escape-mode))
 #+END_SRC
+** Evil matchit
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-matchit
+    :require evil
+    :config (global-evil-matchit-mode 1))
+#+END_SRC
 * Major modes
 ** Compilation
 #+BEGIN_SRC emacs-lisp
