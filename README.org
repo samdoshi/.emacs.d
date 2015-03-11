@@ -103,6 +103,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("h"  . "help")
                        ("P"  . "projectile")
                        ("m"  . "major-mode")
+                       ("o"  . "org")
                        ("s"  . "smartparens")
                        ("t"  . "text")
                        ("tr" . "rainbow")
@@ -134,6 +135,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "ht"    'describe-theme
         "hv"    'describe-variable
         "m'"    'org-edit-src-exit
+        "oa"    'org-agenda
+        "oc"    'org-capture
+        "ot"    'org-todo-list
         "n"     'init/helm-deft
         "N"     'init/edit-Today.org
         "p"     'helm-projectile
@@ -273,6 +277,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "m'"  'org-edit-special)
       (setq org-directory "~/Dropbox/Notes"
             org-default-notes-file (concat org-directory "/Today.org")
+            org-agenda-files (list (concat org-directory "/Today.org"))
             org-startup-indented t
             org-startup-folded "showall"
             org-src-tab-acts-natively t
