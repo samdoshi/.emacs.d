@@ -271,7 +271,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "mtR" 'org-table-iterate
         "mw"  'widen
         "m'"  'org-edit-special)
-      (setq org-startup-indented t
+      (setq org-directory "~/Dropbox/Notes"
+            org-default-notes-file (concat org-directory "/Today.org")
+            org-startup-indented t
             org-startup-folded "showall"
             org-src-tab-acts-natively t
             org-src-fontify-natively t)))
