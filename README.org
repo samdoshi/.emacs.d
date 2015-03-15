@@ -91,7 +91,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (req-package evil-leader
     :ensure evil-leader
     :require (helm init-keybindings init-utils)
-    :init
+    :config
     (progn
       (evil-leader/set-leader "<SPC>")
       (global-evil-leader-mode)
