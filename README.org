@@ -418,7 +418,7 @@ Enable expand region in visual mode with an extra =v=
 #+BEGIN_SRC emacs-lisp
   (req-package git-gutter-fringe
     :diminish git-gutter-mode
-    :idle (global-git-gutter-mode))
+    :config (global-git-gutter-mode))
 #+END_SRC
 ** Guide key
 [[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
