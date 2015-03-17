@@ -242,6 +242,13 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
         (turn-on-haskell-doc)
         (turn-on-eldoc-mode))
       (add-hook 'haskell-mode-hook 'init/haskell-mode-hook)))
+
+  (req-package flycheck-haskell
+    :require (haskell-mode flycheck)
+    :commands flycheck-haskell-setup
+    :init
+    (progn
+      (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
 #+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp
