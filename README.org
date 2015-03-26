@@ -635,15 +635,15 @@ Per host settings
   (init/solarized-dark-theme)
   (let ((host (init/hashed-host-slug))
         (desktop "24e0c4b6b602908fd5cc6be519f8d96b")
-        (laptop "01328afcdda70c813d331f8e838aa392"))
+        (laptop "1808cc85340608cde18d5cab8b3be29d"))
     (message (concat "init/hashed-host-slug=" host))
     (when (equal host desktop)
       (progn
         (when window-system (set-frame-size (selected-frame) 120 84))))
     (when (equal host laptop)
       (progn
-        (when window-system (set-frame-size (selected-frame) 139 52))
-        (set-face-attribute 'default nil :height 150))))
+        (when window-system (set-frame-size (selected-frame) 120 46))
+        (set-face-attribute 'default nil :height 130))))
 #+END_SRC
 ** # on a Mac
 Insert a # with Option-3 on a Mac
