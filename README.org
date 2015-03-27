@@ -631,6 +631,8 @@ Get the path from a shell on a Mac
 Per host settings
 #+BEGIN_SRC emacs-lisp
   (setq initial-scratch-message (init/initial-scratch-message))
+  (set-face-attribute 'default nil :family "Menlo")
+  (set-face-attribute 'default nil :weight 'normal)
   (set-face-attribute 'default nil :height 140)
   (init/solarized-dark-theme)
   (let ((host (init/hashed-host-slug))
