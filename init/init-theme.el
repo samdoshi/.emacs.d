@@ -70,18 +70,27 @@
          (separator-right (intern (format "powerline-%s-%s"
                                           powerline-default-separator
                                           (cdr powerline-default-separator-dir)))))
-    (list
-     (funcall separator-right line-face face2)
-     (powerline-raw " " face2)
-     (powerline-minor-modes face2)
-     (powerline-raw " " face2)
-     (funcall separator-right face2 state-face)
-     (powerline-raw " " state-face)
-     (powerline-buffer-size state-face)
-     (powerline-raw "%4l" state-face 'r)
-     (powerline-raw ":" state-face)
-     (powerline-raw "%3c" state-face 'r)
-     (powerline-raw " " state-face))))
+    (if active
+        (list
+         (funcall separator-right line-face face2)
+         (powerline-raw " " face2)
+         (powerline-minor-modes face2)
+         (powerline-raw " " face2)
+         (funcall separator-right face2 state-face)
+         (powerline-raw " " state-face)
+         (powerline-buffer-size state-face)
+         (powerline-raw "%4l" state-face 'r)
+         (powerline-raw ":" state-face)
+         (powerline-raw "%3c" state-face 'r)
+         (powerline-raw " " state-face))
+      (list
+         (funcall separator-right line-face state-face)
+         (powerline-raw " " state-face)
+         (powerline-buffer-size state-face)
+         (powerline-raw "%4l" state-face 'r)
+         (powerline-raw ":" state-face)
+         (powerline-raw "%3c" state-face 'r)
+         (powerline-raw " " state-face)))))
 
 (defun init/mode-line-prepare ()
   "This is the powerline fun that get's evaluated each time"
