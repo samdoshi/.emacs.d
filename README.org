@@ -115,8 +115,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "ba"    'init/alternate-buffer
         "bb"    'helm-mini
         "bd"    'evil-delete-buffer
-        "bk"    'kill-buffer
-        "bK"    'kill-this-buffer
+        "bk"    'kill-this-buffer
+        "bK"    'kill-buffer
         "cc"    'init/kill-compilation-buffer
         "cf"    'helm-flycheck
         "cm"    'recompile
