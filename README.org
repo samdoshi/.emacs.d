@@ -668,6 +668,10 @@ Place them in the tmp directory
   (setq auto-save-file-name-transforms
         `((".*" ,temporary-file-directory t)))
 #+END_SRC
+** Global auto-revert
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode)
+#+END_SRC
 ** Other GUI settings
 Disable toolbar and scrollbar
 #+BEGIN_SRC emacs-lisp
