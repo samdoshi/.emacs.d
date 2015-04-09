@@ -341,14 +341,12 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
       (add-hook 'rust-mode-hook (lambda ()
                                   (setq-local compile-command "cargo build")))))
 #+END_SRC
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
   (req-package flycheck-rust
-    :require (rust-mode flycheck)
-    :commands flycheck-rust-setup
-    :init
+    :require (flycheck)
+    :config
     (progn
-      (eval-after-load 'flycheck
-        '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup))))
+        (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 #+END_SRC
 * Minor modes
 ** Ace jump
