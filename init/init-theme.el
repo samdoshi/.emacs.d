@@ -131,14 +131,11 @@
 (defconst init/solarized-green     "#859900")
 
 (defun init/solarized-common ()
-  (setq powerline-text-scale-factor 0.9)
   (set-face-attribute 'mode-line nil
-                      :height 0.9
                       :overline nil
                       :underline nil
                       :box nil)
   (set-face-attribute 'mode-line-inactive nil
-                      :height 0.9
                       :overline nil
                       :underline nil
                       :box nil)
