@@ -3,7 +3,9 @@
 
 (defun init/evil-state-name (state)
   "evil-state to string"
-  (symbol-name state))
+  (if (eq 'evilified state)
+      "evilify"
+    (symbol-name state)))
 
 (defun init/current-evil-state-name ()
   "Format evil-state for use on LHS of powerline"
@@ -163,12 +165,13 @@
                       :underline nil
                       :slant 'normal
                       :height 100)
-  (init/evil-state-face 'normal  init/solarized-base02 init/solarized-blue)
-  (init/evil-state-face 'insert  init/solarized-base2  init/solarized-green)
-  (init/evil-state-face 'visual  init/solarized-base2  init/solarized-orange)
-  (init/evil-state-face 'replace init/solarized-base2  init/solarized-magenta)
-  (init/evil-state-face 'emacs   init/solarized-base2  init/solarized-base03)
-  (init/evil-state-face 'motion  init/solarized-base02 init/solarized-blue)
+  (init/evil-state-face 'normal    init/solarized-base02 init/solarized-blue)
+  (init/evil-state-face 'insert    init/solarized-base2  init/solarized-green)
+  (init/evil-state-face 'visual    init/solarized-base2  init/solarized-orange)
+  (init/evil-state-face 'replace   init/solarized-base2  init/solarized-magenta)
+  (init/evil-state-face 'emacs     init/solarized-base2  init/solarized-base03)
+  (init/evil-state-face 'evilified init/solarized-base02 init/solarized-blue)
+  (init/evil-state-face 'motion    init/solarized-base02 init/solarized-blue)
   (init/common-theme))
 
 (defun init/solarized-light-theme ()
@@ -192,12 +195,13 @@
                       :underline nil
                       :slant 'normal
                       :height 100)
-  (init/evil-state-face 'normal  init/solarized-base2 init/solarized-blue)
-  (init/evil-state-face 'insert  init/solarized-base3 init/solarized-green)
-  (init/evil-state-face 'visual  init/solarized-base3 init/solarized-orange)
-  (init/evil-state-face 'replace init/solarized-base3 init/solarized-magenta)
-  (init/evil-state-face 'emacs   init/solarized-base3 init/solarized-base00)
-  (init/evil-state-face 'motion  init/solarized-base2 init/solarized-blue)
+  (init/evil-state-face 'normal    init/solarized-base2 init/solarized-blue)
+  (init/evil-state-face 'insert    init/solarized-base3 init/solarized-green)
+  (init/evil-state-face 'visual    init/solarized-base3 init/solarized-orange)
+  (init/evil-state-face 'replace   init/solarized-base3 init/solarized-magenta)
+  (init/evil-state-face 'emacs     init/solarized-base3 init/solarized-base00)
+  (init/evil-state-face 'evilified init/solarized-base2 init/solarized-blue)
+  (init/evil-state-face 'motion    init/solarized-base2 init/solarized-blue)
   (init/common-theme))
 
 (provide 'init-theme)
