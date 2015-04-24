@@ -164,6 +164,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "Tl"    'init/solarized-light-theme
         "v"     'er/expand-region
         "wc"    'evil-window-delete
+        "wg"    'golden-ratio-mode
         "wh"    'evil-window-left
         "wH"    'evil-window-move-far-left
         "wj"    'evil-window-down
@@ -443,6 +444,21 @@ Enable expand region in visual mode with an extra =v=
   (req-package git-gutter-fringe
     :diminish git-gutter-mode
     :config (global-git-gutter-mode))
+#+END_SRC
+** Golden ratio
+#+BEGIN_SRC emacs-lisp
+  (req-package golden-ratio
+    :defer t
+    :diminish "ⓖ "
+    :config
+    (progn
+      (setq golden-ratio-extra-commands
+        (append golden-ratio-extra-commands
+                '(evil-window-left
+                  evil-window-right
+                  evil-window-up
+                  evil-window-down
+                  evil-window-next)))))
 #+END_SRC
 ** Guide key
 [[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
