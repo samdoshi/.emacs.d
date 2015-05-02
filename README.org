@@ -690,14 +690,22 @@ Per host settings
         (when window-system (set-frame-size (selected-frame) 120 46))
         (set-face-attribute 'default nil :height 130))))
 #+END_SRC
-** # on a Mac
+** # and a € on a Mac
 Insert a # with Option-3 on a Mac
 #+BEGIN_SRC emacs-lisp
   (defun insert-pound ()
     "Inserts a pound into the buffer"
+    (interactive)
     (insert "#"))
+  (bind-key* "M-3" #'insert-pound)
+#+END_SRC
 
-  (bind-key* "M-3" '(lambda()(interactive)(insert-pound)))
+#+BEGIN_SRC emacs-lisp
+  (defun insert-euro ()
+    "Inserts a euro into the buffer"
+    (interactive)
+    (insert "€"))
+  (bind-key* "M-2" #'insert-euro)
 #+END_SRC
 ** Backups and autosave files
 Place them in the tmp directory
