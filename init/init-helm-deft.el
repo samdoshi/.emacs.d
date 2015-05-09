@@ -95,7 +95,7 @@ All other patterns will be used to pre-select files with matching lines.
 FILELST is a list of file paths"
   (let* ((ptrnlst (remove "" (reverse (split-string ptrnstr "  *"))))
          (firstp (pop ptrnlst))
-         (filelst (mapconcat 'identity filelst " "))
+         (filelst (mapconcat 'shell-quote-argument filelst " "))
          (innercmd (if ptrnlst
                        (cl-labels ((build-inner-cmd
                                     (ptrnlst filelst)
