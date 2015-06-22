@@ -518,6 +518,11 @@ Line numbers in programming modes
       (add-hook 'css-mode-hook
                 '(lambda () (linum-mode 1)))
       (setq-default linum-format "%4d")))
+
+  (req-package hlinum
+    :config
+    (progn
+      (hlinum-activate)))
 #+END_SRC
 ** Neo tree
 #+BEGIN_SRC emacs-lisp
