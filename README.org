@@ -476,23 +476,25 @@ Enable expand region in visual mode with an extra =v=
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
-(req-package helm
-  :ensure helm
-  :diminish helm-mode
-  :config
-  (progn
-    (require 'helm-config)
-    (require 'helm-files)
-    (setq helm-split-window-in-side-p t)
-    (bind-key "C-j" 'helm-next-line helm-map)
-    (bind-key "C-k" 'helm-previous-line helm-map)
-    (bind-key "C-S-j" 'helm-next-source helm-map)
-    (bind-key "C-S-k" 'helm-previous-source helm-map)
-    ;; for helm-find-files
-    (bind-key "<tab>" 'helm-execute-persistent-action helm-find-files-map)
-    ;; for find-file
-    (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
-    (helm-mode 1)))
+  (req-package helm
+    :ensure helm
+    :diminish helm-mode
+    :config
+    (progn
+      (require 'helm-config)
+      (require 'helm-files)
+      (setq helm-split-window-in-side-p t
+            helm-echo-input-in-header-line t
+            helm-split-window-default-side 'above)
+      (bind-key "C-j" 'helm-next-line helm-map)
+      (bind-key "C-k" 'helm-previous-line helm-map)
+      (bind-key "C-S-j" 'helm-next-source helm-map)
+      (bind-key "C-S-k" 'helm-previous-source helm-map)
+      ;; for helm-find-files
+      (bind-key "<tab>" 'helm-execute-persistent-action helm-find-files-map)
+      ;; for find-file
+      (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
+      (helm-mode 1)))
 #+END_SRC
 ** Ispell
 #+BEGIN_SRC emacs-lisp
