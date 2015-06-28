@@ -142,7 +142,9 @@
                       :underline nil
                       :box nil)
   (set-face-attribute 'mode-line-buffer-id nil
-                      :foreground init/solarized-orange))
+                      :foreground init/solarized-orange)
+  (set-face-attribute 'helm-source-header nil
+                      :height 1.15))
 
 (defun init/solarized-dark-theme ()
   (interactive)
