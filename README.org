@@ -490,6 +490,8 @@ Enable expand region in visual mode with an extra =v=
       (bind-key "C-k" 'helm-previous-line helm-map)
       (bind-key "C-S-j" 'helm-next-source helm-map)
       (bind-key "C-S-k" 'helm-previous-source helm-map)
+      (bind-key "C-l" 'helm-toggle-visible-mark helm-map)
+      (bind-key "C-S-l" 'helm-toggle-all-marks helm-map)
       ;; for helm-find-files
       (bind-key "<tab>" 'helm-execute-persistent-action helm-find-files-map)
       ;; for find-file
