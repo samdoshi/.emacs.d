@@ -458,7 +458,7 @@ Enable expand region in visual mode with an extra =v=
 #+BEGIN_SRC emacs-lisp
   (req-package golden-ratio
     :defer t
-    :diminish "ⓖ "
+    :diminish " ⓖ"
     :config
     (progn
       (setq golden-ratio-extra-commands
