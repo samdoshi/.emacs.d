@@ -1,5 +1,6 @@
 (require 'evil)
 (require 'powerline)
+(require 'projectile)
 
 (defun init/evil-state-name (state)
   "evil-state to string"

@@ -57,7 +57,7 @@ Either:
   (req-package init-utils
     :require (s flyspell))
   (req-package init-theme
-    :require (solarized-theme evil-leader powerline))
+    :require (solarized-theme evil-leader powerline projectile))
   (req-package init-helm-deft
     :require (helm f)
     :commands init/helm-deft)
