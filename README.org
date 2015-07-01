@@ -396,7 +396,7 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 ** Company
 #+BEGIN_SRC emacs-lisp
   (req-package company
-    :diminish "Ⓒ "
+    :diminish " Ⓒ"
     :init
     (progn
       (setq company-idle-delay 0.1
