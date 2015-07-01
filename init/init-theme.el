@@ -37,28 +37,34 @@
          (face1 (if active 'powerline-active1 'powerline-inactive1))
          (face2 (if active 'powerline-active2 'powerline-inactive2))
          (state-face (if active (init/current-evil-state-face) 'powerline-inactive1))
+         (projectile-p (bound-and-true-p projectile-mode))
          (separator-left (intern (format "powerline-%s-%s"
                                          powerline-default-separator
                                          (car powerline-default-separator-dir))))
          (separator-right (intern (format "powerline-%s-%s"
                                           powerline-default-separator
                                           (cdr powerline-default-separator-dir)))))
-    (list
-     (powerline-raw (init/current-evil-state-name) state-face)
-     (funcall separator-left state-face face1)
-     (powerline-raw " " face1)
-     (powerline-buffer-id face1)
-     (powerline-raw "%*" face1)
-     (powerline-raw " " face1)
-     (powerline-major-mode face1)
-     (powerline-raw " " face1)
-     (funcall separator-left face1 face2)
-     (powerline-vc face2)
-     (powerline-raw " " face2)
-     (powerline-process face2)
-     (powerline-narrow face2)
-     (funcall separator-left face2 line-face)
-     (powerline-raw " " line-face))))
+    (append
+     (list
+      (powerline-raw (init/current-evil-state-name) state-face)
+      (funcall separator-left state-face face1)
+      (powerline-raw " " face1))
+     (when (and active projectile-p)
+       (list (powerline-raw (projectile-project-name) face1)
+             (powerline-raw  " " face1)))
+     (list
+      (powerline-buffer-id face1)
+      (powerline-raw "%*" face1)
+      (powerline-raw " " face1)
+      (powerline-major-mode face1)
+      (powerline-raw " " face1)
+      (funcall separator-left face1 face2)
+      (powerline-vc face2)
+      (powerline-raw " " face2)
+      (powerline-process face2)
+      (powerline-narrow face2)
+      (funcall separator-left face2 line-face)
+      (powerline-raw " " line-face)))))
 
 (defun init/mode-line-prepare-right ()
   (let* ((active (powerline-selected-window-active))

@@ -570,6 +570,7 @@ Line numbers in programming modes
 ** Projectile
 #+BEGIN_SRC emacs-lisp
   (req-package projectile
+    :diminish ""
     :config
     (progn
       (projectile-global-mode)))
