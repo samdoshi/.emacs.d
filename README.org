@@ -682,6 +682,10 @@ Get the path from a shell on a Mac
   (add-hook 'prog-mode-hook 'turn-on-visual-line-mode)
   (diminish 'visual-line-mode "")
 #+END_SRC
+** Highlight lines
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode)
+#+END_SRC
 ** Tab behaviour
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
