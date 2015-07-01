@@ -79,12 +79,20 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 (setq evil-want-fine-undo 'fine)
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
-(req-package evil
-  :ensure evil
-  :require (evil-leader undo-tree)
-  :init
-  (progn
-    (evil-mode 1)))
+  (req-package evil
+    :ensure evil
+    :require (evil-leader undo-tree)
+    :config
+    (progn
+      (add-hook 'evil-insert-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-insert-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-replace-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-replace-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-visual-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-visual-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-emacs-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-emacs-state-exit-hook 'init/evil-exit-edit-hook)
+      (evil-mode 1)))
 #+END_SRC
 ** Evil leader
 #+BEGIN_SRC emacs-lisp
@@ -122,6 +130,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "cf"    'helm-flycheck
         "cm"    'recompile
         "ee"    'init/edit-emacs-README.org
+        "el"    'linum-mode
         "es"    'eshell
         "ff"    'helm-find-files
         "fs"    'evil-write

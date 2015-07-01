@@ -167,6 +167,8 @@
                       :box nil)
   (set-face-attribute 'mode-line-buffer-id nil
                       :foreground init/solarized-orange)
+  (set-face-attribute 'hl-line nil
+                      :background nil)
   (set-face-attribute 'helm-source-header nil
                       :height 1.15))
 
@@ -241,6 +243,12 @@
   (init/evil-state-face 'evilified init/solarized-base2 init/solarized-blue)
   (init/evil-state-face 'motion    init/solarized-base2 init/solarized-blue)
   (init/common-theme))
+
+(defun init/evil-enter-edit-hook ()
+  (face-remap-set-base 'hl-line :background init/solarized-base02))
+
+(defun init/evil-exit-edit-hook ()
+  (face-remap-set-base 'hl-line :background nil))
 
 (provide 'init-theme)
 
