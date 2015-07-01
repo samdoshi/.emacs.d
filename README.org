@@ -520,20 +520,21 @@ Line numbers in programming modes
   (req-package linum
     :config
     (progn
-      (add-hook 'prog-mode-hook
-                '(lambda () (linum-mode 1)))
-      (add-hook 'text-mode-hook
-                '(lambda () (linum-mode 1)))
-      (add-hook 'haskell-cabal-mode-hook
-                '(lambda () (linum-mode 1)))
-      (add-hook 'css-mode-hook
-                '(lambda () (linum-mode 1)))
+      ;;(add-hook 'prog-mode-hook
+      ;;          '(lambda () (linum-mode 1)))
+      ;;(add-hook 'text-mode-hook
+      ;;          '(lambda () (linum-mode 1)))
+      ;;(add-hook 'haskell-cabal-mode-hook
+      ;;          '(lambda () (linum-mode 1)))
+      ;;(add-hook 'css-mode-hook
+      ;;          '(lambda () (linum-mode 1)))
       (setq-default linum-format "%4d")))
 
   (req-package hlinum
     :config
     (progn
-      (hlinum-activate)))
+      ;;(hlinum-activate)
+      ))
 #+END_SRC
 ** Neo tree
 #+BEGIN_SRC emacs-lisp
