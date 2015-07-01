@@ -143,6 +143,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "n"     'init/helm-deft
         "N"     'init/edit-Today.org
         "p"     'helm-projectile
+        "Pp"    'projectile-switch-project
+        "PP"    'projectile-switch-project
         "Ps"    'init/projectile-eshell
         "sb"    'sp-forward-barf-sexp
         "sB"    'sp-backward-barf-sexp
