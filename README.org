@@ -296,6 +296,13 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
             haskell-process-show-debug-tips nil
             haskell-process-log t)
 
+      ;; use stack instead of cabal
+      (setq haskell-process-type 'ghci
+            haskell-process-path-ghci "stack"
+            haskell-process-args-ghci '("ghci")
+            haskell-process-path-cabal "stack")
+
+
       ;;(add-to-list 'company-backends 'company-ghc)
 
       )
