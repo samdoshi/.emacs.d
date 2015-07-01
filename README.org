@@ -108,6 +108,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
                        ("t"  . "text")
                        ("tr" . "rainbow")
                        ("T"  . "theme")
+                       ("Tf" . "fonts")
                        ("w"  . "window")))
         (init/evil-leader-group (car group) (cdr group)))
       (evil-leader/set-key
@@ -163,6 +164,9 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "trd"   'rainbow-delimiters-mode
         "ts"    'ispell
         "Td"    'init/solarized-dark-theme
+        "Tfc"   'init/set-font-consolas
+        "Tfm"   'init/set-font-menlo
+        "Tfs"   'init/set-font-source-code-pro
         "Tl"    'init/solarized-light-theme
         "v"     'er/expand-region
         "wc"    'evil-window-delete

@@ -121,6 +121,23 @@
   (init/powerline-theme)
   (powerline-reset))
 
+(defun init/set-font (font-name)
+  (set-face-attribute 'default nil :family font-name)
+  (set-face-attribute 'default nil :weight 'regular)
+  (powerline-reset))
+
+(defun init/set-font-menlo ()
+  (interactive)
+  (init/set-font "Menlo"))
+
+(defun init/set-font-consolas ()
+  (interactive)
+  (init/set-font "Consolas"))
+
+(defun init/set-font-source-code-pro ()
+  (interactive)
+  (init/set-font "Source Code Pro"))
+
 (defconst init/solarized-base03    "#002b36")
 (defconst init/solarized-base02    "#073642")
 (defconst init/solarized-base01    "#586e75")
