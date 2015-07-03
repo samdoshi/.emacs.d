@@ -708,6 +708,10 @@ Get the path from a shell on a Mac
 #+BEGIN_SRC emacs-lisp
   (global-hl-line-mode)
 #+END_SRC
+** Empty lines
+#+BEGIN_SRC emacs-lisp
+  (toggle-indicate-empty-lines)
+#+END_SRC
 ** Tab behaviour
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
