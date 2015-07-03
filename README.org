@@ -84,14 +84,15 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :require (evil-leader undo-tree)
     :config
     (progn
-      (add-hook 'evil-insert-state-entry-hook 'init/evil-enter-edit-hook)
-      (add-hook 'evil-insert-state-exit-hook 'init/evil-exit-edit-hook)
-      (add-hook 'evil-replace-state-entry-hook 'init/evil-enter-edit-hook)
-      (add-hook 'evil-replace-state-exit-hook 'init/evil-exit-edit-hook)
-      (add-hook 'evil-visual-state-entry-hook 'init/evil-enter-edit-hook)
-      (add-hook 'evil-visual-state-exit-hook 'init/evil-exit-edit-hook)
-      (add-hook 'evil-emacs-state-entry-hook 'init/evil-enter-edit-hook)
-      (add-hook 'evil-emacs-state-exit-hook 'init/evil-exit-edit-hook)
+      ;; buggy!
+      ;;(add-hook 'evil-insert-state-entry-hook 'init/evil-enter-edit-hook)
+      ;;(add-hook 'evil-insert-state-exit-hook 'init/evil-exit-edit-hook)
+      ;;(add-hook 'evil-replace-state-entry-hook 'init/evil-enter-edit-hook)
+      ;;(add-hook 'evil-replace-state-exit-hook 'init/evil-exit-edit-hook)
+      ;;(add-hook 'evil-visual-state-entry-hook 'init/evil-enter-edit-hook)
+      ;;(add-hook 'evil-visual-state-exit-hook 'init/evil-exit-edit-hook)
+      ;;(add-hook 'evil-emacs-state-entry-hook 'init/evil-enter-edit-hook)
+      ;;(add-hook 'evil-emacs-state-exit-hook 'init/evil-exit-edit-hook)
       (evil-mode 1)))
 #+END_SRC
 ** Evil leader
