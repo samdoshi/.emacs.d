@@ -381,10 +381,7 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
             haskell-process-log t)
 
       ;; use stack instead of cabal
-      (setq haskell-process-type 'ghci
-            haskell-process-path-ghci "stack"
-            haskell-process-args-ghci '("ghci")
-            haskell-process-path-cabal "stack")
+      (setq haskell-process-type 'stack-ghci)
 
       ;; make evil play nice with haskell-interactive-mode
       (evil-define-key 'insert haskell-interactive-mode-map
