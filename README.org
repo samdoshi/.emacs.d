@@ -750,6 +750,7 @@ Use solarized
     (progn
       (setq solarized-distinct-fringe-background t)
       (setq solarized-use-more-italic t)
+      (setq solarized-scale-org-headlines nil)
       (setq solarized-use-variable-pitch nil)))
 #+END_SRC
 ** Powerline
