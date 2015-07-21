@@ -380,15 +380,12 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 
       (setq haskell-tags-on-save t
             haskell-interactive-popup-errors nil
-            haskell-process-type 'cabal-repl
+            haskell-process-type 'stack-ghci
             haskell-process-suggest-remove-import-lines t
             haskell-process-suggest-hoogle-imports t
             haskell-process-auto-import-loaded-modules t
             haskell-process-show-debug-tips nil
             haskell-process-log t)
-
-      ;; use stack instead of cabal
-      (setq haskell-process-type 'stack-ghci)
 
       ;; make evil play nice with haskell-interactive-mode
       (evil-define-key 'insert haskell-interactive-mode-map
