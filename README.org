@@ -150,6 +150,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "hp"    'describe-package
         "ht"    'describe-theme
         "hv"    'describe-variable
+        "i"     'helm-semantic-or-imenu
         "m'"    'org-edit-src-exit
         "oa"    'org-agenda
         "oc"    'org-capture
@@ -531,6 +532,7 @@ You need to =pip install jedi service_factory yapf flake8=
             company-require-match nil
             company-dabbrev-downcase nil
             company-tooltip-flip-when-above t
+            company-frontends '(company-pseudo-tooltip-frontend)
             company-selection-wrap-around t))
     :config
     (progn
