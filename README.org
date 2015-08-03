@@ -429,6 +429,41 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 #+BEGIN_SRC emacs-lisp
   (req-package markdown-mode)
 #+END_SRC
+** Python
+You need to =pip install jedi service_factory yapf flake8=
+#+BEGIN_SRC emacs-lisp
+  (req-package anaconda-mode
+    :init
+    (progn
+      (add-hook 'python-mode-hook 'anaconda-mode)
+      (add-hook 'python-mode-hook 'eldoc-mode)))
+
+  (req-package pyvenv
+    :defer t
+    :commands (pyvenv-activate pyvenv-deactivate)
+    :init
+    (progn
+      (evil-leader/set-key-for-mode 'python-mode
+        "md" 'pyvenv-deactivate
+        "mw" 'pyvenv-workon)))
+
+  (req-package py-yapf
+    :defer t
+    :commands (py-yapf-buffer)
+    :init
+    (progn
+      (evil-leader/set-key-for-mode 'python-mode
+        "my" 'py-yapf-buffer)))
+
+  (req-package pip-requirements)
+
+  (req-package company-anacoda
+    :require (company)
+    :defer t
+    :init
+    (progn
+      (add-to-list 'company-backends 'company-anaconda)))
+#+END_SRC
 ** Org
 [[http://orgmode.org/][Org mode]]
 #+BEGIN_SRC emacs-lisp
