@@ -197,8 +197,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "wr"    'evil-window-rotate-downwards
         "ws"    'init/split-window-and-focus
         "wv"    'init/vsplit-window-and-focus
-        "ww"    'evil-window-next
-        "wW"    'evil-window-prev
+        "ww"    'ace-window
         "x"     'helm-M-x
         ":"     'helm-M-x)))
 #+END_SRC
@@ -515,6 +514,14 @@ You need to =pip install jedi service_factory yapf flake8=
 #+BEGIN_SRC emacs-lisp
   (req-package ace-jump-mode
     :commands (ace-jump-word-mode))
+#+END_SRC
+** Ace window
+#+BEGIN_SRC emacs-lisp
+  (req-package ace-window
+    :commands (ace-window)
+    :init
+    (progn
+      (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))))
 #+END_SRC
 ** Adaptive wrap
 #+BEGIN_SRC emacs-lisp
