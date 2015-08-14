@@ -137,6 +137,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "el"    'linum-mode
         "es"    'eshell
         "ff"    'helm-find-files
+        "fn"    'neotree-toggle
         "fs"    'evil-write
         "fS"    'evil-write-all
         "gd"    'magit-diff-working-tree
@@ -358,7 +359,7 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 ==ghc-mod== has [[https://github.com/kazu-yamamoto/ghc-mod/issues/417][problems]], uncomment below when it's fixed
 #+BEGIN_SRC emacs-lisp
   (req-package haskell-mode
-    :require (evil-leader)
+    :require (evil-leader company company-ghci)
     ;;:require (evil-leader ghc company company-ghc)
     :init
     (progn
@@ -395,6 +396,7 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
         (kbd "RET") 'haskell-interactive-mode-return)
 
       ;;(add-to-list 'company-backends 'company-ghc)
+      (add-to-list 'company-backends 'company-ghci)
 
       )
     :config
@@ -487,7 +489,8 @@ You need to =pip install jedi service_factory yapf flake8=
             org-startup-indented t
             org-startup-folded "showall"
             org-src-tab-acts-natively t
-            org-src-fontify-natively t)))
+            org-src-fontify-natively t
+            org-src-window-setup 'current-window)))
 #+END_SRC
 ** Rust
 [[https://github.com/rust-lang/rust/tree/master/src/etc/emacs][Homepage]]
@@ -495,7 +498,7 @@ You need to =pip install jedi service_factory yapf flake8=
   (req-package rust-mode
     :init
     (progn
-      (setq-default rust-indent-method-chain nil
+      (setq-default rust-indent-method-chain t
                     rust-indent-offset 4)
       (add-hook 'rust-mode-hook (lambda ()
                                   (setq-local compile-command "cargo build")))))
@@ -599,6 +602,7 @@ Enable expand region in visual mode with an extra =v=
             (init/no-golden-ratio-for-buffers " *popwin-dummy*")))
       (add-to-list 'golden-ratio-inhibit-functions
                    'init/no-golden-ratio-guide-key)
+      (add-to-list 'golden-ratio-exclude-buffer-names " *NeoTree*")
       (setq golden-ratio-extra-commands
             (append golden-ratio-extra-commands
                     '(evil-window-left
@@ -681,7 +685,10 @@ Line numbers in programming modes
   (req-package neotree
     :init
     (progn
-      (setq neo-theme 'arrow)))
+      (setq neo-window-width 32
+            neo-smart-open t
+            neo-banner-message nil
+            neo-theme 'arrow)))
 #+END_SRC
 ** OSX Dictionary
 #+BEGIN_SRC emacs-lisp
