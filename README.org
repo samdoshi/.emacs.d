@@ -612,7 +612,8 @@ Enable expand region in visual mode with an extra =v=
       (add-to-list 'golden-ratio-exclude-buffer-names " *NeoTree*")
       (setq golden-ratio-extra-commands
             (append golden-ratio-extra-commands
-                    '(evil-window-left
+                    '(ace-window
+                      evil-window-left
                       evil-window-right
                       evil-window-up
                       evil-window-down
