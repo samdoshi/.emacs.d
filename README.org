@@ -359,7 +359,6 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 #+BEGIN_SRC emacs-lisp
   (req-package haskell-mode
     :require (evil-leader company company-ghci)
-    ;;:require (evil-leader ghc company company-ghc)
     :init
     (progn
       (defun init/haskell-load-and-bring ()
@@ -376,8 +375,6 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
         "cB"  'haskell-process-load-file
         "cm"  'haskell-process-cabal-build
         "ct"  'init/haskell-test)
-      ;;(autoload 'ghc-init "ghc" nil t)
-      ;;(autoload 'ghc-debug "ghc" nil t)
 
       (setq haskell-tags-on-save t
             haskell-interactive-popup-errors nil
@@ -394,25 +391,16 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
       (evil-define-key 'normal haskell-interactive-mode-map
         (kbd "RET") 'haskell-interactive-mode-return)
 
-      ;;(add-to-list 'company-backends 'company-ghc)
-      (add-to-list 'company-backends 'company-ghci)
-
-      )
+      (add-to-list 'company-backends 'company-ghci))
     :config
     (progn
       (defun init/haskell-mode-hook ()
-        ;;(ghc-init)
+        (if (fboundp 'electric-indent-local-mode)
+            (electric-indent-local-mode -1))
         (turn-on-haskell-indentation)
         (turn-on-haskell-doc)
         (turn-on-eldoc-mode))
       (add-hook 'haskell-mode-hook 'init/haskell-mode-hook)))
-
-  ;;(req-package flycheck-haskell
-  ;;  :require (haskell-mode flycheck)
-  ;;  :commands flycheck-haskell-setup
-  ;;  :init
-  ;;  (progn
-  ;;    (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
 #+END_SRC
 ** Html
 #+BEGIN_SRC emacs-lisp
