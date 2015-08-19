@@ -379,8 +379,8 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
       (setq haskell-tags-on-save t
             haskell-interactive-popup-errors nil
             haskell-process-type 'stack-ghci
-            haskell-process-suggest-remove-import-lines t
-            haskell-process-suggest-hoogle-imports t
+            haskell-process-suggest-remove-import-lines nil
+            haskell-process-suggest-hoogle-imports nil
             haskell-process-auto-import-loaded-modules t
             haskell-process-show-debug-tips nil
             haskell-process-log t)
