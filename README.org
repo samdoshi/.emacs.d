@@ -78,22 +78,20 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (setq evil-want-C-u-scroll t
         evil-want-C-w-in-emacs-state t
         evil-want-fine-undo 'fine
-        evil-default-cursor t
         evil-echo-state nil)
   (req-package evil
     :ensure evil
     :require (evil-leader undo-tree)
     :config
     (progn
-      ;; buggy!
-      ;;(add-hook 'evil-insert-state-entry-hook 'init/evil-enter-edit-hook)
-      ;;(add-hook 'evil-insert-state-exit-hook 'init/evil-exit-edit-hook)
-      ;;(add-hook 'evil-replace-state-entry-hook 'init/evil-enter-edit-hook)
-      ;;(add-hook 'evil-replace-state-exit-hook 'init/evil-exit-edit-hook)
-      ;;(add-hook 'evil-visual-state-entry-hook 'init/evil-enter-edit-hook)
-      ;;(add-hook 'evil-visual-state-exit-hook 'init/evil-exit-edit-hook)
-      ;;(add-hook 'evil-emacs-state-entry-hook 'init/evil-enter-edit-hook)
-      ;;(add-hook 'evil-emacs-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-insert-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-insert-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-replace-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-replace-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-visual-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-visual-state-exit-hook 'init/evil-exit-edit-hook)
+      (add-hook 'evil-emacs-state-entry-hook 'init/evil-enter-edit-hook)
+      (add-hook 'evil-emacs-state-exit-hook 'init/evil-exit-edit-hook)
       (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
       (evil-mode 1)))
 #+END_SRC
@@ -943,4 +941,9 @@ Go into full screen with Super-F
 Move the position of underlines to the bottomline instead of the baseline
 #+BEGIN_SRC emacs-lisp
   (setq x-underline-at-descent-line t)
+#+END_SRC
+
+Disable blinking cursors
+#+BEGIN_SRC emacs-lisp
+  (blink-cursor-mode 0)
 #+END_SRC

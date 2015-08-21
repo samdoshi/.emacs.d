@@ -170,7 +170,13 @@
   (set-face-attribute 'hl-line nil
                       :background nil)
   (set-face-attribute 'helm-source-header nil
-                      :height 1.15))
+                      :height 1.15)
+  (setq evil-normal-state-cursor `(box ,init/solarized-blue))
+  (setq evil-insert-state-cursor `((bar . 2) ,init/solarized-green))
+  (setq evil-visual-state-cursor `(box ,init/solarized-orange))
+  (setq evil-replace-state-cursor `(box ,init/solarized-magenta))
+  (setq evil-emacs-state-cursor `((bar . 2) ,init/solarized-base2))
+  (setq evil-motion-state-cursor `(box ,init/solarized-blue)))
 
 (defun init/solarized-dark-theme ()
   (interactive)
