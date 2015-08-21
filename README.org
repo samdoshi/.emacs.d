@@ -94,6 +94,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
       ;;(add-hook 'evil-visual-state-exit-hook 'init/evil-exit-edit-hook)
       ;;(add-hook 'evil-emacs-state-entry-hook 'init/evil-enter-edit-hook)
       ;;(add-hook 'evil-emacs-state-exit-hook 'init/evil-exit-edit-hook)
+      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
       (evil-mode 1)))
 #+END_SRC
 ** Evil leader
@@ -202,11 +203,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 #+END_SRC
 ** Evil escape
 #+BEGIN_SRC emacs-lisp
-  (req-package evil-escape
-    :require evil
-    :diminish evil-escape-mode
-    :init (setq-default evil-escape-key-sequence "kj")
-    :config (evil-escape-mode))
+  ;; (req-package evil-escape
+  ;;   :require evil
+  ;;   :diminish evil-escape-mode
+  ;;   :init (setq-default evil-escape-key-sequence "kj")
+  ;;   :config (evil-escape-mode))
 #+END_SRC
 ** Evil matchit
 #+BEGIN_SRC emacs-lisp
