@@ -215,10 +215,18 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
     :require evil
     :config (global-evil-matchit-mode 1))
 #+END_SRC
-** Evil Nerd Commenter
+** Evil nerd commenter
 #+BEGIN_SRC emacs-lisp
   (req-package evil-nerd-commenter
     :commands (evilnc-comment-or-uncomment-lines))
+#+END_SRC
+** Evil snipe
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-snipe
+    :config
+    (progn
+      (evil-snipe-mode 1)
+      (evil-snipe-override-mode 1)))
 #+END_SRC
 * Major modes
 ** Compilation
