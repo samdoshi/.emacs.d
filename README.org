@@ -70,6 +70,8 @@ Either:
     :require (eshell))
   (req-package init-projectile
     :require (helm projectile))
+  (req-package init-hydra
+    :require (hydra evil-numbers))
 #+END_SRC
 * Evil
 ** Evil
@@ -169,12 +171,14 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "sj"    'sp-end-of-next-sexp
         "ss"    'sp-forward-slurp-sexp
         "sS"    'sp-backward-slurp-sexp
+        "ta"    'init/hydra-numbers/evil-numbers/inc-at-pt 
         "tc"    'evilnc-comment-or-uncomment-lines
         "td"    'osx-dictionary-search-pointer
         "tf"    'init/flyspell-mode
         "trb"   'rainbow-blocks-mode
         "trd"   'rainbow-delimiters-mode
         "ts"    'ispell
+        "tx"    'init/hydra-numbers/evil-numbers/dec-at-pt
         "tS"    'helm-flyspell-correct
         "Td"    'init/solarized-dark-theme
         "Tfc"   'init/set-font-consolas
