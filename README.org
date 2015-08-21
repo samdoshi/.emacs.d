@@ -594,10 +594,10 @@ Enable expand region in visual mode with an extra =v=
       (defun init/no-golden-ratio-guide-key ()
         "Disable golden-ratio for guide-key popwin buffer."
         (or (init/no-golden-ratio-for-buffers " *guide-key*")
-            (init/no-golden-ratio-for-buffers " *popwin-dummy*")))
+            (init/no-golden-ratio-for-buffers " *popwin-dummy*")
+            (init/no-golden-ratio-for-buffers " *NeoTree*")))
       (add-to-list 'golden-ratio-inhibit-functions
                    'init/no-golden-ratio-guide-key)
-      (add-to-list 'golden-ratio-exclude-buffer-names " *NeoTree*")
       (setq golden-ratio-extra-commands
             (append golden-ratio-extra-commands
                     '(ace-window
