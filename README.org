@@ -170,12 +170,13 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "sj"    'sp-end-of-next-sexp
         "ss"    'sp-forward-slurp-sexp
         "sS"    'sp-backward-slurp-sexp
-        "tc"    'helm-flyspell-correct
+        "tc"    'evilnc-comment-or-uncomment-lines
         "td"    'osx-dictionary-search-pointer
         "tf"    'init/flyspell-mode
         "trb"   'rainbow-blocks-mode
         "trd"   'rainbow-delimiters-mode
         "ts"    'ispell
+        "tS"    'helm-flyspell-correct
         "Td"    'init/solarized-dark-theme
         "Tfc"   'init/set-font-consolas
         "Tfm"   'init/set-font-menlo
@@ -212,6 +213,11 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
   (req-package evil-matchit
     :require evil
     :config (global-evil-matchit-mode 1))
+#+END_SRC
+** Evil Nerd Commenter
+#+BEGIN_SRC emacs-lisp
+  (req-package evil-nerd-commenter
+    :commands (evilnc-comment-or-uncomment-lines))
 #+END_SRC
 * Major modes
 ** Compilation
