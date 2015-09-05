@@ -512,6 +512,10 @@ You need to =pip install jedi service_factory yapf flake8=
     (progn
         (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 #+END_SRC
+** YAML
+#+BEGIN_SRC emacs-lisp
+  (req-package yaml-mode)
+#+END_SRC
 * Minor modes
 ** Ace jump
 #+BEGIN_SRC emacs-lisp
