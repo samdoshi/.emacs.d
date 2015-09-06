@@ -705,6 +705,10 @@ Line numbers in programming modes
             neo-banner-message nil
             neo-theme 'arrow)))
 #+END_SRC
+** Olivetti
+#+BEGIN_SRC emacs-lisp
+  (req-package olivetti)
+#+END_SRC
 ** OSX Dictionary
 #+BEGIN_SRC emacs-lisp
   (req-package osx-dictionary
