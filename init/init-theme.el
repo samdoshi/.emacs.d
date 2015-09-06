@@ -255,7 +255,7 @@
   (init/common-theme))
 
 (defun init/evil-enter-edit-hook ()
-  (face-remap-set-base 'hl-line :background init/solarized-base02))
+  (face-remap-set-base 'hl-line :background (face-attribute 'mode-line :background)))
 
 (defun init/evil-exit-edit-hook ()
   (face-remap-set-base 'hl-line :background nil))
