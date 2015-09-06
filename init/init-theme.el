@@ -171,6 +171,14 @@
                       :background nil)
   (set-face-attribute 'helm-source-header nil
                       :height 1.15)
+  (set-face-attribute 'markdown-header-face-1 nil
+                      :foreground (face-attribute 'org-level-1 :foreground))
+  (set-face-attribute 'markdown-header-face-2 nil
+                      :foreground (face-attribute 'org-level-2 :foreground))
+  (set-face-attribute 'markdown-header-face-3 nil
+                      :foreground (face-attribute 'org-level-3 :foreground))
+  (set-face-attribute 'markdown-header-face-4 nil
+                      :foreground (face-attribute 'org-level-4 :foreground))
   (setq evil-normal-state-cursor `(box ,init/solarized-blue))
   (setq evil-insert-state-cursor `((bar . 2) ,init/solarized-green))
   (setq evil-visual-state-cursor `(box ,init/solarized-orange))
