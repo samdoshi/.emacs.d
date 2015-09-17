@@ -900,6 +900,10 @@ Insert a # with Option-3 on a Mac
     (insert "€"))
   (bind-key* "M-2" #'insert-euro)
 #+END_SRC
+** Yes or no prompts
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
 ** Backups and autosave files
 Place them in the tmp directory
 #+BEGIN_SRC emacs-lisp
