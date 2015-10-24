@@ -426,6 +426,26 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
     (("\\.html\\'" . web-mode)
      ("\\.htm\\'"  . web-mode)))
 #+END_SRC
+** Javascript
+#+BEGIN_SRC emacs-lisp
+  (req-package js2-mode
+    :defer t
+    :mode
+    (("\\.js\\'" . js2-mode)))
+
+  (req-package tern
+    :defer t
+    :init
+    (progn
+      (add-hook 'js2-mode-hook 'tern-mode)))
+
+  (req-package company-tern
+    :require (company)
+    :defer t
+    :init
+    (progn
+      (add-to-list 'company-backends 'company-tern)))
+#+END_SRC
 ** Lua
 #+BEGIN_SRC emacs-lisp
   (req-package lua-mode)
