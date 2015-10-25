@@ -433,6 +433,9 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
     :mode
     (("\\.js\\'" . js2-mode)))
 
+  (req-package json-mode
+    :defer t)
+
   (req-package tern
     :defer t
     :init
