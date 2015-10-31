@@ -421,17 +421,25 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 ** Html
 #+BEGIN_SRC emacs-lisp
   (req-package web-mode
+    :require (flycheck)
     :defer t
     :mode
     (("\\.html\\'" . web-mode)
-     ("\\.htm\\'"  . web-mode)))
+     ("\\.htm\\'"  . web-mode)
+     ("\\.jsx\\'" . web-mode))
+    :init
+    (progn
+      (flycheck-add-mode 'javascript-eslint 'web-mode)))
 #+END_SRC
 ** Javascript
 #+BEGIN_SRC emacs-lisp
   (req-package js2-mode
     :defer t
     :mode
-    (("\\.js\\'" . js2-mode)))
+    (("\\.js\\'" . js2-mode))
+    :init
+    (progn
+      (setq js2-strict-missing-semi-warning nil)))
 
   (req-package json-mode
     :defer t)
@@ -440,7 +448,8 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
     :defer t
     :init
     (progn
-      (add-hook 'js2-mode-hook 'tern-mode)))
+      (add-hook 'js2-mode-hook 'tern-mode)
+      (add-hook 'web-mode-hook 'tern-mode)))
 
   (req-package company-tern
     :require (company)
@@ -536,6 +545,11 @@ You need to =pip install jedi service_factory yapf flake8=
     (progn
         (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 #+END_SRC
+** SCSS
+#+BEGIN_SRC emacs-lisp
+  (req-package scss-mode
+    :defer t)
+#+END_SRC
 ** YAML
 #+BEGIN_SRC emacs-lisp
   (req-package yaml-mode)
@@ -603,7 +617,9 @@ Enable expand region in visual mode with an extra =v=
       (global-flycheck-mode t))
     :config
     (progn
-      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc
+                                                 javascript-jshint
+                                                 json-jsonlist))))
   (req-package helm-flycheck
     :commands helm-flycheck
     :require flycheck)
