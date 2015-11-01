@@ -171,7 +171,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "sj"    'sp-end-of-next-sexp
         "ss"    'sp-forward-slurp-sexp
         "sS"    'sp-backward-slurp-sexp
-        "ta"    'init/hydra-numbers/evil-numbers/inc-at-pt 
+        "ta"    'init/hydra-numbers/evil-numbers/inc-at-pt
         "tc"    'evilnc-comment-or-uncomment-lines
         "td"    'osx-dictionary-search-pointer
         "tf"    'init/flyspell-mode
@@ -201,7 +201,8 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "wv"    'init/vsplit-window-and-focus
         "ww"    'ace-window
         "x"     'helm-M-x
-        ":"     'helm-M-x)))
+        ":"     'helm-M-x
+        "C-g"   'keyboard-quit)))
 #+END_SRC
 ** Evil escape
 #+BEGIN_SRC emacs-lisp
@@ -883,6 +884,26 @@ Get the path from a shell on a Mac
   (req-package-finish)
 #+END_SRC
 * Post package settings
+** Bells
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function
+        (lambda ()
+          (unless (memq this-command
+                        '(isearch-abort
+                          abort-recursive-edit
+                          exit-minibuffer
+                          keyboard-quit
+                          evil-scroll-down
+                          evil-scroll-up
+                          mwheel-scroll
+                          down
+                          up
+                          next-line
+                          previous-line
+                          backward-char
+                          forward-char))
+            (ding))))
+#+END_SRC
 ** Visual lines
 #+BEGIN_SRC emacs-lisp
   (setq-default visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
