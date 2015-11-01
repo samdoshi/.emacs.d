@@ -414,7 +414,6 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
       (defun init/haskell-mode-hook ()
         (if (fboundp 'electric-indent-local-mode)
             (electric-indent-local-mode -1))
-        (turn-on-haskell-indentation)
         (turn-on-haskell-doc)
         (turn-on-eldoc-mode))
       (add-hook 'haskell-mode-hook 'init/haskell-mode-hook)))
