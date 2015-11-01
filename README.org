@@ -650,13 +650,13 @@ Enable expand region in visual mode with an extra =v=
       (defun init/no-golden-ratio-for-buffers (bufname)
         "Disable golden-ratio if BUFNAME is the name of a visible buffer."
         (and (get-buffer bufname) (get-buffer-window bufname 'visible)))
-      (defun init/no-golden-ratio-guide-key ()
+      (defun init/no-golden-ratio ()
         "Disable golden-ratio for guide-key popwin buffer."
         (or (init/no-golden-ratio-for-buffers " *guide-key*")
             (init/no-golden-ratio-for-buffers " *popwin-dummy*")
             (init/no-golden-ratio-for-buffers " *NeoTree*")))
       (add-to-list 'golden-ratio-inhibit-functions
-                   'init/no-golden-ratio-guide-key)
+                   'init/no-golden-ratio)
       (setq golden-ratio-extra-commands
             (append golden-ratio-extra-commands
                     '(ace-window
@@ -665,20 +665,6 @@ Enable expand region in visual mode with an extra =v=
                       evil-window-up
                       evil-window-down
                       evil-window-next)))))
-#+END_SRC
-** Guide key
-[[https://github.com/kai2nenobu/guide-key][Guide key]] displays the available keybindings in a popup window.
-#+BEGIN_SRC emacs-lisp
-  (req-package guide-key
-    :diminish guide-key-mode
-    :init
-    (progn
-      (setq guide-key/guide-key-sequence `("<SPC>" "g" "C-c" "C-h" "C-w" "C-x")
-            guide-key/recursive-key-sequence-flag t
-            guide-key/highlight-command-regexp "group:"
-            guide-key/text-scale-amount 1
-            guide-key/idle-delay 0.3)
-      (guide-key-mode t)))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
@@ -843,6 +829,20 @@ Probably want to customise the colours used by solarized for this mode.
     :init
     (progn
       (global-undo-tree-mode)))
+#+END_SRC
+** Which key
+#+BEGIN_SRC emacs-lisp
+  (req-package which-key
+    :diminish which-key-mode
+    :init
+    (progn
+      (setq which-key-idle-delay 0.3
+            which-key-sort-order 'which-key-key-order-alpha))
+    :config
+    (progn
+      (add-to-list 'which-key-description-replacement-alist '("init/\\(.+\\)" . "\\1"))
+      (which-key-setup-side-window-right-bottom)
+      (which-key-mode)))
 #+END_SRC
 ** Whitespace
 #+BEGIN_SRC emacs-lisp
