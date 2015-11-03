@@ -146,6 +146,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
         "hc"    'describe-char
         "hf"    'describe-function
         "hk"    'describe-key
+        "hl"    'view-lossage
         "hm"    'describe-mode
         "hp"    'describe-package
         "ht"    'describe-theme
