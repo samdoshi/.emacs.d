@@ -496,7 +496,7 @@ You need to =pip install jedi service_factory yapf flake8=
 
   (req-package pip-requirements)
 
-  (req-package company-anacoda
+  (req-package company-anaconda
     :require (company)
     :defer t
     :init
