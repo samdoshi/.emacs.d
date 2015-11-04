@@ -376,7 +376,7 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 ==ghc-mod== has [[https://github.com/kazu-yamamoto/ghc-mod/issues/417][problems]], uncomment below when it's fixed
 #+BEGIN_SRC emacs-lisp
   (req-package haskell-mode
-    :require (evil-leader company company-ghci)
+    :require (evil-leader ghc company company-ghc)
     :init
     (progn
       (defun init/haskell-load-and-bring ()
@@ -409,12 +409,13 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
       (evil-define-key 'normal haskell-interactive-mode-map
         (kbd "RET") 'haskell-interactive-mode-return)
 
-      (add-to-list 'company-backends 'company-ghci))
+      (add-to-list 'company-backends 'company-ghc))
     :config
     (progn
       (defun init/haskell-mode-hook ()
         (if (fboundp 'electric-indent-local-mode)
             (electric-indent-local-mode -1))
+        (ghc-init)
         (turn-on-haskell-doc)
         (turn-on-eldoc-mode))
       (add-hook 'haskell-mode-hook 'init/haskell-mode-hook)))
