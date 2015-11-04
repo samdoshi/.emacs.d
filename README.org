@@ -227,7 +227,7 @@ Make sure we set =evil-want-C-u-scroll= & others before =evil= is loaded.
 ** Evil snipe
 #+BEGIN_SRC emacs-lisp
   (req-package evil-snipe
-    :diminish evil-snipe-mode
+    :diminish evil-snipe-local-mode
     :config
     (progn
       (evil-snipe-mode 1)
