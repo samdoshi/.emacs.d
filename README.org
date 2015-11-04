@@ -587,9 +587,9 @@ You need to =pip install jedi service_factory yapf flake8=
             company-minimum-prefix-length 2
             company-require-match nil
             company-dabbrev-downcase nil
+            company-selection-wrap-around t
             company-tooltip-flip-when-above t
-            company-frontends '(company-pseudo-tooltip-frontend)
-            company-selection-wrap-around t))
+            company-tooltip-align-annotations t))
     :config
     (progn
       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
