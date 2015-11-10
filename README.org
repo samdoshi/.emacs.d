@@ -418,7 +418,10 @@ https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
         (ghc-init)
         (turn-on-haskell-doc)
         (turn-on-eldoc-mode))
-      (add-hook 'haskell-mode-hook 'init/haskell-mode-hook)))
+      (add-hook 'haskell-mode-hook 'init/haskell-mode-hook)
+      ;; remove overlays from ghc-check.el if flycheck is enabled
+      (set-face-attribute 'ghc-face-error nil :underline nil)
+      (set-face-attribute 'ghc-face-warn nil :underline nil)))
 #+END_SRC
 ** Html
 #+BEGIN_SRC emacs-lisp
