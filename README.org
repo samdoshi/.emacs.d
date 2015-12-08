@@ -942,7 +942,8 @@ Per host settings
     (message (concat "init/hashed-host-slug=" host))
     (when (equal host desktop)
       (progn
-        (when window-system (set-frame-size (selected-frame) 120 59))))
+        (when window-system (set-frame-size (selected-frame) 100 60))
+        (set-face-attribute 'default nil :height 170)))
     (when (equal host laptop)
       (progn
         (when window-system (set-frame-size (selected-frame) 120 46))
