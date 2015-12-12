@@ -47,6 +47,8 @@
     (candidates-in-buffer)
     (match-part . (lambda (c) (helm-basename c)))
     (type . file)
+    (action . (lambda (candidate)
+                (find-file candidate)))
     (candidate-transformer . (lambda (c) (sort (helm-highlight-files c)
                                                (lambda (a b)
                                                  (string< (downcase (car a))
