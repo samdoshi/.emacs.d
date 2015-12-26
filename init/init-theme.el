@@ -215,6 +215,8 @@
                       :underline nil
                       :slant 'normal
                       :height 100)
+  (set-face-attribute 'whitespace-tab nil
+                      :foreground init/solarized-base02)
   (init/evil-state-face 'normal    init/solarized-blue  init/solarized-base02)
   (init/evil-state-face 'insert    init/solarized-base2 init/solarized-green)
   (init/evil-state-face 'visual    init/solarized-base2 init/solarized-orange)
@@ -253,6 +255,8 @@
                       :underline nil
                       :slant 'normal
                       :height 100)
+  (set-face-attribute 'whitespace-tab nil
+                      :foreground init/solarized-base2)
   (init/evil-state-face 'normal    init/solarized-blue  init/solarized-base2)
   (init/evil-state-face 'insert    init/solarized-base3 init/solarized-green)
   (init/evil-state-face 'visual    init/solarized-base3 init/solarized-orange)

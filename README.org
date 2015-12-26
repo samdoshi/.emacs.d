@@ -854,7 +854,8 @@ Probably want to customise the colours used by solarized for this mode.
   (req-package whitespace
     :diminish global-whitespace-mode
     :init
-    (setq whitespace-style (quote (face tabs newline trailing tab-mark)))
+    (setq whitespace-style
+          '(face tabs newline trailing tab-mark space-before-tab space-after-tab))
     (global-whitespace-mode 1))
 #+END_SRC
 * GUI
