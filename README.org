@@ -624,7 +624,8 @@ Enable expand region in visual mode with an extra =v=
     (progn
       (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc
                                                  javascript-jshint
-                                                 json-jsonlist))))
+                                                 json-jsonlist)
+                    flycheck-c/c++-gcc-executable  "gcc-5")))
   (req-package helm-flycheck
     :commands helm-flycheck
     :require flycheck)
