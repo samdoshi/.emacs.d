@@ -797,10 +797,7 @@ Probably want to customise the colours used by solarized for this mode.
 ** Rainbow mode
 #+BEGIN_SRC emacs-lisp
   (req-package rainbow-mode
-    :diminish rainbow-mode
-    :config
-    (progn
-      (add-hook 'prog-mode-hook 'rainbow-mode)))
+    :diminish rainbow-mode)
 #+END_SRC
 ** Smartparens
 #+BEGIN_SRC emacs-lisp
