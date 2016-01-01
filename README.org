@@ -581,6 +581,16 @@ You need to =pip install jedi service_factory yapf flake8=
   (progn
     (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)))
 #+END_SRC
+** Beacon
+#+BEGIN_SRC emacs-lisp
+  (req-package beacon
+    :diminish ""
+    :require (init-theme)
+    :config
+    (progn
+      (setq beacon-color init/solarized-base01)
+      (beacon-mode 1)))
+#+END_SRC
 ** Company
 #+BEGIN_SRC emacs-lisp
   (req-package company
